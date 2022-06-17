@@ -9,18 +9,30 @@ class Task{
 
     const btnClicked = document.getElementById("submit1");
     btnClicked.addEventListener("click",() =>{
-      let li = document.createElement("li");
+      let col1 = document.createElement("li");
+      let col2 = document.createElement("li");
+      let col3 = document.createElement("button");
+      let col4 = document.createElement("button");
+
       let taskName = document.getElementById("taskInput").value;
       let dueDate = document.getElementById("dateInput").value;
       let x = document.createTextNode(taskName);
       let y = document.createTextNode(dueDate);
-      li.appendChild(x);
-      li.appendChild(y);
+      let z = document.createTextNode("Edit Task");
+      let a = document.createTextNode("Mark as done");
+
+      col1.appendChild(x);
+      col2.appendChild(y);
+      col3.appendChild(z);
+      col4.appendChild(a);
       
       const task1 = new Task(taskName,dueDate);
   //create more instances of this task using a if statement and submission counter.
       
-      document.getElementById("outputlist").appendChild(li);
+      document.getElementById("tasksColumn").appendChild(col1);
+      document.getElementById("datesColumn").appendChild(col2);
+      document.getElementById("editColumn").appendChild(col3);
+      document.getElementById("strikeColumn").appendChild(col4);
   
       
   
@@ -40,6 +52,10 @@ class Task{
       //console.log(array1);
       //console.log(array1.length);
       //console.log(task2);
+      const editClicked = document.getElementById("editColumn");
+      editClicked.addEventListener("click",() =>{
+        console.log("Clicked")
+      });
     });
   
     
