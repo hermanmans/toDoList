@@ -6,7 +6,7 @@ class Task{
     //return this; is implicit with Constructor Functions
   }
   } 
-
+    let array1 = [];
     const btnClicked = document.getElementById("submit1");
     btnClicked.addEventListener("click",() =>{
       let col1 = document.createElement("li");
@@ -48,14 +48,16 @@ class Task{
       //document.getElementById("output3").innerHTML=task2._firstname;
       //document.getElementById("output4").innerHTML=task2._lastname;
       
-      // BAD practice. Use get method to include privacy task.firstname//
-      //console.log(array1);
+      array1.push(task1);
+      console.log(array1);
+
       //console.log(array1.length);
       //console.log(task2);
-      const editClicked = document.getElementById("editColumn");
-      editClicked.addEventListener("click",() =>{
-        console.log("Clicked")
-      });
+      
     });
   
-    
+    const editClicked = document.getElementById("editColumn");
+      editClicked.addEventListener("click",() =>{
+        array1[0]._task = "Herman Edited This";
+        console.log(array1);
+      });
