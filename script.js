@@ -53,11 +53,18 @@ class Task{
 
       //console.log(array1.length);
       //console.log(task2);
-      
-    });
-  
-    const editClicked = document.getElementById("editColumn");
-      editClicked.addEventListener("click",() =>{
-        array1[0]._task = "Herman Edited This";
-        console.log(array1);
+      const handlerEdit = () =>{
+        let newTask = prompt("Please enter new task");
+        let newDate = prompt("Please enter new due date");
+        console.log(x[2]);
+        //let x1 = document.createTextNode(newTask);
+        //let y1 = document.createTextNode(newDate);
+        //col1.replaceChild(x1,x);
+        //col2.replaceChild(y1,y);
+      }
+      const editClicked = document.getElementById("editColumn");
+      editClicked.addEventListener("click", handlerEdit)
+        //document.getElementById("taskInput").innerHTML=array1[0]._task;
+        
       });
+      
