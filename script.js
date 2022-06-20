@@ -16,9 +16,9 @@ class Task{
 
       let taskName = document.getElementById("taskInput").value;
       let dueDate = document.getElementById("dateInput").value;
-      const task1 = new Task(taskName,dueDate);
-      let x = document.createTextNode(task1._task);
-      let y = document.createTextNode(task1._date);
+      const task = new Task(taskName,dueDate);
+      let x = document.createTextNode(task._task);
+      let y = document.createTextNode(task._date);
       let z = document.createTextNode("Edit Task");
       let a = document.createTextNode("Mark as done");
 
@@ -35,8 +35,8 @@ class Task{
       document.getElementById("strikeColumn").appendChild(col4);
   
       
-  
-  
+      
+      //console.log(document.getElementById("editColumn").childNodes[0]);
      // var li = document.createElement("li");
       //var inputValue = document.getElementById("task").value;
       //var t = document.createTextNode(inputValue);
@@ -48,6 +48,11 @@ class Task{
       //document.getElementById("output3").innerHTML=task2._firstname;
       //document.getElementById("output4").innerHTML=task2._lastname;
       
+      let editNodes = document.getElementById("editColumn").childNodes;
+      let taskNodes = document.getElementById("tasksColumn").childNodes;
+      let editArray = (Array.from(editNodes));
+      let taskArray = (Array.from(taskNodes));
+      console.log(taskArray);
       
 
       //console.log(array1.length);
@@ -66,10 +71,16 @@ class Task{
       const editClicked = document.getElementById("editColumn");
       editClicked.addEventListener("click", handlerEdit)
         //document.getElementById("taskInput").innerHTML=array1[0]._task;
-
-      array1.push(task1);
+      
+      
+      if (editNodes.index)
+      
+      
+      array1.push(task);
       console.log(array1);
       console.log(x[1]);
-      
       });
       
+// on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
+//edit taskcolum node inedx[a] 
+
