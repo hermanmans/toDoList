@@ -29,7 +29,6 @@ class Task{
       
       
   //create more instances of this task using a if statement and submission counter.
-      
       document.getElementById("tasksColumn").appendChild(col1);
       document.getElementById("datesColumn").appendChild(col2);
       document.getElementById("editColumn").appendChild(col3);
@@ -56,10 +55,13 @@ class Task{
       const handlerEdit = () =>{
         let newTask = prompt("Please enter new task");
         let newDate = prompt("Please enter new due date");
-  
+        let x1 = replaceChild[newTask,x];
+        col1.appendChild(x1);
+        console.log(array1);
         //let y1 = document.createTextNode(newDate);
         //col1.replaceChild(x1,x);
         //col2.replaceChild(y1,y);
+       
       }
       const editClicked = document.getElementById("editColumn");
       editClicked.addEventListener("click", handlerEdit)
@@ -68,6 +70,6 @@ class Task{
       array1.push(task1);
       console.log(array1);
       console.log(x[1]);
-      console.log(x[2]);
+      
       });
       
