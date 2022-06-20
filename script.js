@@ -53,10 +53,10 @@ class Task{
       //console.log(array1.length);
       //console.log(task2);
       const handlerEdit = () =>{
-        let newTask = prompt("Please enter new task");
+        let newTask =document.createTextNode(prompt("Please enter new task"));
         let newDate = prompt("Please enter new due date");
-        let x1 = replaceChild[newTask,x];
-        col1.appendChild(x1);
+        let x1 = document.replaceChild(newTask,col1);
+        console.log(newTask);
         console.log(array1);
         //let y1 = document.createTextNode(newDate);
         //col1.replaceChild(x1,x);
