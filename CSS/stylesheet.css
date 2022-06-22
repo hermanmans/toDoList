@@ -7,6 +7,11 @@ body{
     font-size: large;
 }
 
+.jumbotron{
+    background-image: url("/Images/Board.jpg");
+    padding: 20px;
+  }
+  
 .outputList{
     display: flex;
 }
@@ -27,7 +32,7 @@ header{
 }
 
 #columns{
-    padding: 2px;
+    padding: 10px;
     background-color: beige;
     margin: 2px;
     border-radius: 10px;

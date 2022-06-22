@@ -16,9 +16,9 @@ class Task{
 
       let taskName = document.getElementById("taskInput").value;
       let dueDate = document.getElementById("dateInput").value;
-      const task = new Task(taskName,dueDate);
-      let x = document.createTextNode(task._task);
-      let y = document.createTextNode(task._date);
+      const task0 = new Task(taskName,dueDate);
+      let x = document.createTextNode(task0._task);
+      let y = document.createTextNode(task0._date);
       let z = document.createTextNode("Edit Task");
       let a = document.createTextNode("Mark as done");
 
@@ -29,10 +29,10 @@ class Task{
       
       
   //create more instances of this task using a if statement and submission counter.
-      document.getElementById("tasksColumn").appendChild(col1);
-      document.getElementById("datesColumn").appendChild(col2);
-      document.getElementById("editColumn").appendChild(col3);
-      document.getElementById("strikeColumn").appendChild(col4);
+     n1 = document.getElementById("tasksColumn").appendChild(col1);
+     n2 = document.getElementById("datesColumn").appendChild(col2);
+     n3 = document.getElementById("editColumn").appendChild(col3);
+     n4 = document.getElementById("strikeColumn").appendChild(col4);
   
       
       
@@ -49,36 +49,45 @@ class Task{
       //document.getElementById("output4").innerHTML=task2._lastname;
       
       let editNodes = document.getElementById("editColumn").childNodes;
-      let taskNodes = document.getElementById("tasksColumn").childNodes;
-      let editArray = (Array.from(editNodes));
-      let taskArray = (Array.from(taskNodes));
+      let taskNodes = document.getElementById("tasksColumn").childNodes; 
+      let editArray = (Array.from(editNodes)); //nodes converted to an array of edit buttons
+      let taskArray = (Array.from(taskNodes)); //nodes converted to an array of list items
+      let taskIndex = taskArray.indexOf(col1);
+      let editIndex = editArray.indexOf(col3);
       console.log(taskArray);
+      console.log(editArray);
+      console.log(taskArray[0]);
       
-
       //console.log(array1.length);
       //console.log(task2);
       const handlerEdit = () =>{
-        let newTask =document.createTextNode(prompt("Please enter new task"));
-        let newDate = prompt("Please enter new due date");
-        let x1 = document.replaceChild(newTask,col1);
-        console.log(newTask);
-        console.log(array1);
+        console.log(editIndex);
+          let ref = editIndex;
+          let newTask =document.createTextNode(prompt("Please enter new task"));
+          let newDate =document.createTextNode(prompt("Please enter new due date"));
+          let taskElement = document.getElementById("tasksColumn").children[ref];
+          taskElement.replaceChild(newTask,x);
+          let dateElement = document.getElementById("datesColumn").children[ref];
+          dateElement.replaceChild(newDate,y);
+          //let x1 = document.replaceChild(newTask,col1);
         //let y1 = document.createTextNode(newDate);
         //col1.replaceChild(x1,x);
         //col2.replaceChild(y1,y);
-       
+        newObj = Object.create(task0);
+        newObj._task = newTask;
+        newObj._date = newDate;
+        console.log(newObj);
+        
+        array1.splice(ref,1,newObj);
+        console.log(array1);
       }
-      const editClicked = document.getElementById("editColumn");
-      editClicked.addEventListener("click", handlerEdit)
+      const editClicked = n3;
+      editClicked.addEventListener("click", handlerEdit);
         //document.getElementById("taskInput").innerHTML=array1[0]._task;
       
       
-      if (editNodes.index)
-      
-      
-      array1.push(task);
+      array1.push(task0);
       console.log(array1);
-      console.log(x[1]);
       });
       
 // on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
