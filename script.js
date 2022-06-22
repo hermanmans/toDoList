@@ -15,7 +15,7 @@ class Task{
       let col4 = document.createElement("button");
 
       let taskName = document.getElementById("taskInput").value;
-      let dueDate = document.getElementById("dateInput").value;
+      let dueDate = new Date(document.getElementById("dateInput").value);
       const task0 = new Task(taskName,dueDate);
       let x = document.createTextNode(task0._task);
       let y = document.createTextNode(task0._date);
@@ -57,18 +57,19 @@ class Task{
       console.log(taskArray);
       console.log(editArray);
       console.log(taskArray[0]);
-      
+     
       //console.log(array1.length);
       //console.log(task2);
+      let array2 = [];
       const handlerEdit = () =>{
         console.log(editIndex);
-          let ref = editIndex;
-          let newTask =document.createTextNode(prompt("Please enter new task"));
-          let newDate =document.createTextNode(prompt("Please enter new due date"));
-          let taskElement = document.getElementById("tasksColumn").children[ref];
-          taskElement.replaceChild(newTask,x);
-          let dateElement = document.getElementById("datesColumn").children[ref];
-          dateElement.replaceChild(newDate,y);
+        let ref = editIndex;
+        let newTask =document.createTextNode(prompt("Please enter new task"));
+        let newDate =document.createTextNode(prompt("Please enter new due date"));
+        let taskElement = document.getElementById("tasksColumn").children[ref];
+        taskElement.replaceChild(newTask,x);
+        let dateElement = document.getElementById("datesColumn").children[ref];
+        dateElement.replaceChild(newDate,y);
           //let x1 = document.replaceChild(newTask,col1);
         //let y1 = document.createTextNode(newDate);
         //col1.replaceChild(x1,x);
@@ -79,14 +80,19 @@ class Task{
         console.log(newObj);
         
         array1.splice(ref,1,newObj);
+        
         console.log(array1);
-        console.log(taskElement);
+        console.log(array2);
       }
       const editClicked = n3;
       editClicked.addEventListener("click", handlerEdit);
         //document.getElementById("taskInput").innerHTML=array1[0]._task; 
       array1.push(task0);
+      array1.sort(function (a, b) {
+        return a._date - b._date
+      });
       console.log(array1);
+      
       });
       
 // on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
