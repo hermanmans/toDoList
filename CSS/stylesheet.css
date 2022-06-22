@@ -10,6 +10,7 @@ body{
 .jumbotron{
     background-image: url("/Images/Board.jpg");
     padding: 20px;
+    border-radius: 10px;
   }
   
 .outputList{

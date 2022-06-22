@@ -74,18 +74,17 @@ class Task{
         //col1.replaceChild(x1,x);
         //col2.replaceChild(y1,y);
         newObj = Object.create(task0);
-        newObj._task = newTask;
-        newObj._date = newDate;
+        newObj._task = newTask.nodeValue;
+        newObj._date = newDate.nodeValue;
         console.log(newObj);
         
         array1.splice(ref,1,newObj);
         console.log(array1);
+        console.log(taskElement);
       }
       const editClicked = n3;
       editClicked.addEventListener("click", handlerEdit);
-        //document.getElementById("taskInput").innerHTML=array1[0]._task;
-      
-      
+        //document.getElementById("taskInput").innerHTML=array1[0]._task; 
       array1.push(task0);
       console.log(array1);
       });
