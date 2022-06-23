@@ -57,7 +57,7 @@ class Task{
       console.log(taskArray);
       console.log(editArray);
       console.log(taskArray[0]);
-     
+    
       //console.log(array1.length);
       //console.log(task2);
       let array2 = [];
@@ -81,8 +81,6 @@ class Task{
         
         array1.splice(ref,1,newObj);
         
-        console.log(array1);
-        console.log(array2);
       }
       const editClicked = n3;
       editClicked.addEventListener("click", handlerEdit);
@@ -91,10 +89,39 @@ class Task{
       array1.sort(function (a, b) {
         return a._date - b._date
       });
-      console.log(array1);
-      
+        return col1, col2;
       });
       
 // on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
 //edit taskcolum node inedx[a] 
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      const sortClicked = document.getElementById("sortList");
+      sortClicked.addEventListener("click",() =>{
+          for (n=0;n<array1.length;n++){
+          let col5 = document.createElement("li");
+          let col6 = document.createElement("li");
+          let col7 = document.createElement("button");
+          let col8 = document.createElement("button");
+          let taskUpd = array1[n]._task;
+          let dueUpd = array1[n]._date;
+          let xx = document.createTextNode(taskUpd);
+          let yy = document.createTextNode(dueUpd);
+          let zz = document.createTextNode("Edit Task");
+          let aa = document.createTextNode("Mark as done");
 
+          col5.appendChild(xx);
+          col6.appendChild(yy);
+          col7.appendChild(zz);
+          col8.appendChild(aa);
+        
+          document.getElementById("tasksColumn").appendChild(col5);
+          document.getElementById("datesColumn").appendChild(col6);
+          document.getElementById("editColumn").appendChild(col7);
+          document.getElementById("strikeColumn").appendChild(col8);
+          console.log(xx);
+          console.log(yy);
+          console.log(array1.length);
+          console.log(n1);
+        }
+      console.log(array1);
+      });
