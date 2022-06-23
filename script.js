@@ -57,6 +57,7 @@ class Task{
       console.log(taskArray);
       console.log(editArray);
       console.log(taskArray[0]);
+      console.log(array1);
     
       //console.log(array1.length);
       //console.log(task2);
@@ -78,7 +79,7 @@ class Task{
         newObj._task = newTask.nodeValue;
         newObj._date = newDate.nodeValue;
         console.log(newObj);
-        
+        console.log(array1);
         array1.splice(ref,1,newObj);
         
       }
