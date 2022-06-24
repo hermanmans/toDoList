@@ -53,12 +53,14 @@ class Task{
       let editArray = (Array.from(editNodes)); //nodes converted to an array of edit buttons
       let taskArray = (Array.from(taskNodes)); //nodes converted to an array of list items
       let taskIndex = taskArray.indexOf(col1);
-      let editIndex = editArray.indexOf(col3);
+      let editIndex = array1.indexOf(col3);
+      array1.push(task0);
+      array1.sort(function (a, b) {
+        return a._date - b._date
+      });
+
       console.log(taskArray);
-      console.log(editArray);
       console.log(taskArray[0]);
-      console.log(array1);
-    
       //console.log(array1.length);
       //console.log(task2);
       let array2 = [];
@@ -77,20 +79,16 @@ class Task{
         //col2.replaceChild(y1,y);
         newObj = Object.create(task0);
         newObj._task = newTask.nodeValue;
-        newObj._date = newDate.nodeValue;
+        newObj._date = new Date(newDate.nodeValue);
+        array1.splice(ref,1,newObj);
         console.log(newObj);
         console.log(array1);
-        array1.splice(ref,1,newObj);
-        
       }
       const editClicked = n3;
       editClicked.addEventListener("click", handlerEdit);
         //document.getElementById("taskInput").innerHTML=array1[0]._task; 
-      array1.push(task0);
-      array1.sort(function (a, b) {
-        return a._date - b._date
-      });
-        return col1, col2;
+      
+  
       });
       
 // on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
