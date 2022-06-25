@@ -7,6 +7,7 @@ class Task{
   }
   } 
     let array1 = [];
+    let array2 = [];
     const btnClicked = document.getElementById("submit1");
     btnClicked.addEventListener("click",() =>{
       let col1 = document.createElement("li");
@@ -29,10 +30,10 @@ class Task{
       
       
   //create more instances of this task using a if statement and submission counter.
-     n1 = document.getElementById("tasksColumn").appendChild(col1);
-     n2 = document.getElementById("datesColumn").appendChild(col2);
-     n3 = document.getElementById("editColumn").appendChild(col3);
-     n4 = document.getElementById("strikeColumn").appendChild(col4);
+      let n1 = document.getElementById("tasksColumn").appendChild(col1);
+      let n2 = document.getElementById("datesColumn").appendChild(col2);
+      let n3 = document.getElementById("editColumn").appendChild(col3);
+      let n4 = document.getElementById("strikeColumn").appendChild(col4);
   
       
       
@@ -52,18 +53,15 @@ class Task{
       let taskNodes = document.getElementById("tasksColumn").childNodes; 
       let editArray = (Array.from(editNodes)); //nodes converted to an array of edit buttons
       let taskArray = (Array.from(taskNodes)); //nodes converted to an array of list items
-      let taskIndex = taskArray.indexOf(col1);
-      let editIndex = array1.indexOf(col3);
-      array1.push(task0);
-      array1.sort(function (a, b) {
-        return a._date - b._date
-      });
+      let editIndex = editArray.indexOf(col3);
 
+      array1.push(task0);
+      
       console.log(taskArray);
       console.log(taskArray[0]);
+      console.log(array1);
       //console.log(array1.length);
       //console.log(task2);
-      let array2 = [];
       const handlerEdit = () =>{
         let ref = editIndex;
         let newTask =document.createTextNode(prompt("Please enter new task"));
@@ -81,45 +79,50 @@ class Task{
         newObj._date = new Date(newDate.nodeValue);
         array1.splice(ref,1,newObj);
         console.log(newObj);
-        console.log(array1);
       }
       const editClicked = n3;
       editClicked.addEventListener("click", handlerEdit);
         //document.getElementById("taskInput").innerHTML=array1[0]._task; 
-      
-  
-      });
-      
-// on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
-//edit taskcolum node inedx[a] 
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
       const sortClicked = document.getElementById("sortList");
       sortClicked.addEventListener("click",() =>{
-          for (n=0;n<array1.length;n++){
+        array1.sort(function (a, b) {
+          return a._date - b._date
+        });
+        for (p=0;p<array1.length;p++){
+          let xx = document.createTextNode(array1[p]._task);
+          let yy = document.createTextNode(array1[p]._date);
+          let zz = document.createTextNode("Edit Task");
+          let aa = document.createTextNode("Mark as done");
+
+          col1.remove(x);
+          col2.remove(y);
+          col3.remove(z);
+          col4.remove(a);
+
           let col5 = document.createElement("li");
           let col6 = document.createElement("li");
           let col7 = document.createElement("button");
           let col8 = document.createElement("button");
-          let taskUpd = array1[n]._task;
-          let dueUpd = array1[n]._date;
-          let xx = document.createTextNode(taskUpd);
-          let yy = document.createTextNode(dueUpd);
-          let zz = document.createTextNode("Edit Task");
-          let aa = document.createTextNode("Mark as done");
 
           col5.appendChild(xx);
           col6.appendChild(yy);
           col7.appendChild(zz);
           col8.appendChild(aa);
-        
-          document.getElementById("tasksColumn").appendChild(col5);
-          document.getElementById("datesColumn").appendChild(col6);
-          document.getElementById("editColumn").appendChild(col7);
-          document.getElementById("strikeColumn").appendChild(col8);
-          console.log(xx);
-          console.log(yy);
-          console.log(array1.length);
-          console.log(n1);
+          
+          let n1 = document.getElementById("tasksColumn").appendChild(col5);
+          let n2 = document.getElementById("datesColumn").appendChild(col6);
+          let n3 = document.getElementById("editColumn").appendChild(col7);
+          let n4 = document.getElementById("strikeColumn").appendChild(col8);
+         
+          
         }
-      console.log(array1);
+        return array1 // GOOGLE HOW TO RETURN AL
       });
+      
+      });
+      
+// on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
+//edit taskcolum node inedx[a] 
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
