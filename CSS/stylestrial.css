@@ -1,0 +1,39 @@
+*{box-sizing: border-box;}
+
+body{
+    background-image: url("/Images/pic.jpg");
+    background-size: cover;
+    border-radius: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: large;
+}
+
+.jumbotron{
+    background-image: url("/Images/Board.jpg");
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+
+header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+}
+
+
+#columns{
+    padding: 20px;
+    background-color: beige;
+    margin: 2px;
+    border-radius: 10px;
+    width: fit-content;
+    word-spacing: normal;
+    display: flex;
+}
+#editColumn,#strikeColumn{
+    display: flex;
+    flex-direction: column;
+}

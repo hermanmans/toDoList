@@ -65,7 +65,6 @@ class Task{
       //console.log(task2);
       let array2 = [];
       const handlerEdit = () =>{
-        console.log(editIndex);
         let ref = editIndex;
         let newTask =document.createTextNode(prompt("Please enter new task"));
         let newDate =document.createTextNode(prompt("Please enter new due date"));
