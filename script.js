@@ -1,128 +1,139 @@
-
 class Task{
-    constructor(task, date){
-    this._task = task;
-    this._date = date;
-    //return this; is implicit with Constructor Functions
+  constructor(task, date){
+  this._task = task;
+  this._date = date;
   }
-  } 
-    let array1 = [];
-    let array2 = [];
-    const btnClicked = document.getElementById("submit1");
-    btnClicked.addEventListener("click",() =>{
-      let col1 = document.createElement("li");
-      let col2 = document.createElement("li");
-      let col3 = document.createElement("button");
-      let col4 = document.createElement("button");
+}
+window.addEventListener('load', ()=>{
+  const form = document.querySelector("#taskForm");
+  const input = document.querySelector("#taskInput");
+  const inputDate = document.querySelector("#dateInput");
+  const listElement = document.querySelector("#tasks");
+  const listElement2 = document.querySelector("#date");
 
-      let taskName = document.getElementById("taskInput").value;
-      let dueDate = new Date(document.getElementById("dateInput").value);
-      const task0 = new Task(taskName,dueDate);
-      let x = document.createTextNode(task0._task);
-      let y = document.createTextNode(task0._date);
-      let z = document.createTextNode("Edit Task");
-      let a = document.createTextNode("Mark as done");
-
-      col1.appendChild(x);
-      col2.appendChild(y);
-      col3.appendChild(z);
-      col4.appendChild(a);
-      
-      
-  //create more instances of this task using a if statement and submission counter.
-      let n1 = document.getElementById("tasksColumn").appendChild(col1);
-      let n2 = document.getElementById("datesColumn").appendChild(col2);
-      let n3 = document.getElementById("editColumn").appendChild(col3);
-      let n4 = document.getElementById("strikeColumn").appendChild(col4);
-  
-      
-      
-      //console.log(document.getElementById("editColumn").childNodes[0]);
-     // var li = document.createElement("li");
-      //var inputValue = document.getElementById("task").value;
-      //var t = document.createTextNode(inputValue);
-     // li.appendChild(t);
-  
-      
-  
-      //const task2 = new Task(taskName,dueDate);
-      //document.getElementById("output3").innerHTML=task2._firstname;
-      //document.getElementById("output4").innerHTML=task2._lastname;
-      
-      let editNodes = document.getElementById("editColumn").childNodes;
-      let taskNodes = document.getElementById("tasksColumn").childNodes; 
-      let editArray = (Array.from(editNodes)); //nodes converted to an array of edit buttons
-      let taskArray = (Array.from(taskNodes)); //nodes converted to an array of list items
-      let editIndex = editArray.indexOf(col3);
-
-      array1.push(task0);
-      
-      console.log(taskArray);
-      console.log(taskArray[0]);
-      console.log(array1);
-      //console.log(array1.length);
-      //console.log(task2);
-      const handlerEdit = () =>{
-        let ref = editIndex;
-        let newTask =document.createTextNode(prompt("Please enter new task"));
-        let newDate =document.createTextNode(prompt("Please enter new due date"));
-        let taskElement = document.getElementById("tasksColumn").children[ref];
-        taskElement.replaceChild(newTask,x);
-        let dateElement = document.getElementById("datesColumn").children[ref];
-        dateElement.replaceChild(newDate,y);
-          //let x1 = document.replaceChild(newTask,col1);
-        //let y1 = document.createTextNode(newDate);
-        //col1.replaceChild(x1,x);
-        //col2.replaceChild(y1,y);
-        newObj = Object.create(task0);
-        newObj._task = newTask.nodeValue;
-        newObj._date = new Date(newDate.nodeValue);
-        array1.splice(ref,1,newObj);
-        console.log(newObj);
+  let arrayall = [];
+    form.addEventListener('submit',(e) =>{
+      e.preventDefault();
+      const task = input.value;
+      const date = inputDate.value;
+      const task0 = new Task(task,date);
+      if (!task){
+        alert("Missing Field");
+        return;
       }
-      const editClicked = n3;
-      editClicked.addEventListener("click", handlerEdit);
-        //document.getElementById("taskInput").innerHTML=array1[0]._task; 
+      if(!date){
+        alert("Missing Field");
+        return;
+      }
+//Creating elements for: tasks and dates and their content   
+      const taskElement = document.createElement("div");
+      taskElement.classList.add("task");
+      const taskContent = document.createElement("div");
+      taskContent.classList.add("content");
 
-      const sortClicked = document.getElementById("sortList");
-      sortClicked.addEventListener("click",() =>{
-        array1.sort(function (a, b) {
-          return a._date - b._date
-        });
-        for (p=0;p<array1.length;p++){
-          let xx = document.createTextNode(array1[p]._task);
-          let yy = document.createTextNode(array1[p]._date);
-          let zz = document.createTextNode("Edit Task");
-          let aa = document.createTextNode("Mark as done");
+      const dateElement = document.createElement("div");
+      dateElement.classList.add("date");
+      const dateContent = document.createElement("div");
+      dateContent.classList.add("content2");
 
-          col1.remove(x);
-          col2.remove(y);
-          col3.remove(z);
-          col4.remove(a);
+//Content appointed as child of elements       
+      taskElement.appendChild(taskContent);
+      dateElement.appendChild(dateContent);
 
-          let col5 = document.createElement("li");
-          let col6 = document.createElement("li");
-          let col7 = document.createElement("button");
-          let col8 = document.createElement("button");
+//Input window created for tasks and dates
+      const taskInputElement = document.createElement("input");
+      taskInputElement.classList.add("class");
+      taskInputElement.type = "text";
+      taskInputElement.value = task;
+      taskInputElement.setAttribute("readonly","readonly");
+      taskContent.appendChild(taskInputElement);
 
-          col5.appendChild(xx);
-          col6.appendChild(yy);
-          col7.appendChild(zz);
-          col8.appendChild(aa);
-          
-          let n1 = document.getElementById("tasksColumn").appendChild(col5);
-          let n2 = document.getElementById("datesColumn").appendChild(col6);
-          let n3 = document.getElementById("editColumn").appendChild(col7);
-          let n4 = document.getElementById("strikeColumn").appendChild(col8);
-         
-          
+      const dateInputElement = document.createElement("input");
+      dateInputElement.classList.add("class2");
+      dateInputElement.type = "date";
+      dateInputElement.value = date;
+      dateInputElement.setAttribute("readonly","readonly");
+      dateContent.appendChild(dateInputElement);  
+
+      const taskAction = document.createElement("div");
+      taskAction.classList.add("actions");
+
+      const taskDate = document.createElement("div");
+      taskDate.classList.add("dates");
+
+//Creating edit and delete buttons and appointing relevant classes
+      const taskEdit = document.createElement("button");
+      taskEdit.classList.add("editTask");
+      taskEdit.innerHTML = "Edit Task";
+
+      const dateEdit = document.createElement("button");
+      dateEdit.classList.add("editDate");
+      dateEdit.innerHTML = "Edit Date";
+
+      const taskDelete = document.createElement("button");
+      taskDelete.classList.add("deleteTask");
+      taskDelete.innerHTML = "Delete Task";
+
+      const dateDelete = document.createElement("button");
+      dateDelete.classList.add("deleteDate");
+      dateDelete.innerHTML = "Delete Date";
+
+//Buttons being appended when add event is invoked
+      taskAction.appendChild(taskEdit);
+      taskAction.appendChild(taskDelete);
+
+      taskDate.appendChild(dateEdit);
+      taskDate.appendChild(dateDelete);
+
+      taskElement.appendChild(taskAction);
+      listElement.appendChild(taskElement);
+
+      dateElement.appendChild(taskDate);
+      listElement2.appendChild(dateElement);
+
+      input.value = "";
+
+      inputDate.value = '';
+
+//Edit task event invoked when clicked on edit task.
+      taskEdit.addEventListener('click', ()=>{
+        if (taskEdit.innerText.toLowerCase()=="edit task"){
+          taskInputElement.removeAttribute("readonly");
+          taskInputElement.focus();
+          taskEdit.innerText = "Save Task"
+        }else{
+          taskInputElement.setAttribute("readonly", "readonly");
+          taskEdit.innerText = "Edit Task";
         }
-        return array1 // GOOGLE HOW TO RETURN AL
+        
       });
-      
+
+      taskDelete.addEventListener('click', ()=>{
+        listElement.removeChild(taskElement);
       });
+
+//Edit date event invoked when clicked on edit date. 
+      dateEdit.addEventListener('click', ()=>{
+        if (dateEdit.innerText.toLowerCase()=="edit date"){
+          dateInputElement.removeAttribute("readonly");
+          dateInputElement.focus();
+          dateEdit.innerText = "Save Date"
+        }else{
+          dateInputElement.setAttribute("readonly", "readonly");
+          dateEdit.innerText = "Edit Date";
+        }
+        console.log(arrayall);
+      });
+
+      dateDelete.addEventListener('click', ()=>{
+        listElement2.removeChild(dateElement);
+      });
+
+    arrayall.push(task0);
+    arrayall.sort(function (a, b) {
+      return a._date - b._date;
+    });
+    console.log(arrayall);
       
-// on click if your let a = editcolum node index; edit taskcolum node inedx[a] 
-//edit taskcolum node inedx[a] 
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      
+    });
+  });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="CSS/stylesheet.css">
     
@@ -16,22 +16,19 @@
     </div>
   </header>
   <br>
-    <form>
-    <label for="taskInp">New Task</label> 
-          <input id="taskInput" type="text" placeholder="New task..." onfocus="this.value=''" >
-    <label for="dateInp">Set Date</label> 
-          <input id="dateInput" type="date"> 
+    <form id="taskForm">
+      <label for="taskInput">Task</label> 
+            <input id="taskInput" type="text" placeholder="New task..." onfocus="this.value=''" >
+      <label for="dateInput">Due Date</label> 
+            <input id="dateInput" type="date" placeholder="Due date..." onfocus="this.value=''" >
+      <label for="submit"></label>
+            <input id="submit" type="submit" style="font-size:3;"> 
     </form>
   <br>
-  <button id="submit1">Add Task</button>
-  <br><br>
-  <h1>Planned Tasks</h1>
-  <button id="sortList">Sort List</button>
-  <div id="columns">
-  <ul id="tasksColumn"></ul>
-  <ul id="datesColumn"></ul>
-  <ul id="editColumn"></ul>
-  <ul id="strikeColumn"></ul>
-  </div>
+  <h2>Planned Tasks</h2>
+  <section class="taskList">
+    <div id="tasks"></div>
+    <div id="date"></div>
+  </section>
 </body>
 </html>
