@@ -31,7 +31,6 @@ header{
     width: fit-content;
     word-spacing: normal;
     display: flex;
-    justify-content: center;
 }
 
 label{
