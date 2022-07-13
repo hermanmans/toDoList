@@ -9,6 +9,30 @@
     <link rel="stylesheet" href="css/styleToDoUpd.css">
 </head>
 <body>
-    
+    <div id="myApp">
+        <button>Add Items</button>
+        <button>Cancel</button>
+        <br><br>
+        <div id="inputs">
+            <label for="description">Description</label>
+                <input type="text" id="description">
+            <label for="start">Start Date</label>
+                <input type="date" id="start">
+            <label for="due">Due Date</label>
+                <input type="date" id="due">
+            <label for="status">Status</label>
+                <input type="checkbox" id="status">
+            <label for="tags">Tags</label>
+                <input type="text" id="tags">
+        </div>
+        <div>
+            <button id="submit1"> <!--disabled used for preventing submissions of blank inputs-->
+                Submit
+            </button>
+            <ul>
+                <li></li> <!--Class attribute bound to li tag -->
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

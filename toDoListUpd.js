@@ -34,7 +34,8 @@ class Status extends Tags{
   };
 
 }
-
-
-let todo = new Status('Head to Gym', 'Someting that I should turn into an habit', 2018-04-24, 2020-12-06, ['exercise', 'fitness', ' routines'], '');
-let complete = Status.status("YES");
+///////////////////
+let submitButton = document.getElementById("submit1");
+  submitButton.addEventListener('click',()=>{
+    console.log("works");
+  });
