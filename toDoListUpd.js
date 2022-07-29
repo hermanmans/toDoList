@@ -35,7 +35,18 @@ class Status extends Tags{
 
 }
 ///////////////////
+let todo = new Status();
+let submitFunc = function(){
+    todo._title = document.getElementById("title").value;
+    todo._description = document.getElementById("description").value;
+    todo._date_created = document.getElementById("start").value;
+    todo._date_due = document.getElementById("due").value;
+    Status.status = true;
+    todo._tagname = document.getElementById("tags").value;
+     
+
+    console.log(todo);
+};
+
 let submitButton = document.getElementById("submit1");
-  submitButton.addEventListener('click',()=>{
-    console.log("works");
-  });
+  submitButton.addEventListener('click',submitFunc);
