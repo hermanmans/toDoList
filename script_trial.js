@@ -46,11 +46,19 @@ class Task{
    
     });
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    let array2 =[];
     const editClicked = document.getElementById("editColumn");
     editClicked.addEventListener("click",() =>{
-      console.log(array1.indexOf[Task.prototype()]);
-        
+      let taskName = document.createElement("input");
+      let dueDate = new Date(document.getElementById("dateInput"));
+      const task1 = new Task(taskName,dueDate);
+      let taskNode = document.createTextNode(task1.task);
+      taskName.appendChild(taskNode);
+      document.getElementById("tasksColumn").appendChild(taskName);
+      array2.push(task1);
+      console.log(array2);
     });
+    
 
 
 
