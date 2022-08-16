@@ -46,7 +46,14 @@ class Task{
    
     });
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
+    const editClicked = document.getElementById("editColumn");
+    editClicked.addEventListener("click",() =>{
+      console.log(array1.indexOf[Task.prototype()]);
+        
+    });
+
+
+
     const sortClicked = document.getElementById("sortList");
     sortClicked.addEventListener("click",() =>{
         document.getElementById("tasksColumn").remove();
