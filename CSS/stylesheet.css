@@ -23,7 +23,7 @@ header{
 }
 
 
-#tasks .tasks,.taskList,.date{
+#tasks .tasks,.taskList,.date,.complete,.delete{
     padding: 5px;
     background-color: beige;
     margin: 2px;
@@ -35,6 +35,14 @@ header{
 
 label{
     font-size: x-large;
+}
+
+.main{
+    padding: 10px;
+    width:100%;
+    height: 100%;
+    background-color:rgb(244, 243, 186);
+    border-radius: 20px;
 }
 
 

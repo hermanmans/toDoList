@@ -4,12 +4,14 @@ class Task{
   this.date = date;
   }
 }
-window.addEventListener('load', ()=>{
+//window.addEventListener('load', ()=>{
   const form = document.querySelector("#taskForm");
   const input = document.querySelector("#taskInput");
   const inputDate = document.querySelector("#dateInput");
   const listElement = document.querySelector("#tasks");
   const listElement2 = document.querySelector("#date");
+  const listElement3 = document.querySelector("#complete");
+  const listElement4 = document.querySelector("#delete");
 
   let arrayall = [];
     form.addEventListener('submit',(e) =>{
@@ -36,6 +38,12 @@ window.addEventListener('load', ()=>{
       const dateContent = document.createElement("div");
       dateContent.classList.add("content2");
 
+      const completeElement = document.createElement("div");
+      completeElement.classList.add("complete");
+
+      const deleteElement = document.createElement("div");
+      deleteElement.classList.add("delete");
+
 //Content appointed as child of elements       
       taskElement.appendChild(taskContent);
       dateElement.appendChild(dateContent);
@@ -61,6 +69,12 @@ window.addEventListener('load', ()=>{
       const taskDate = document.createElement("div");
       taskDate.classList.add("dates");
 
+      const completeColumn = document.createElement("div");
+      completeColumn.classList.add("completeCol");
+
+      const deleteColumn = document.createElement("div");
+      deleteColumn.classList.add("deleteCol");
+
 //Creating edit and delete buttons and appointing relevant classes
       const taskEdit = document.createElement("button");
       taskEdit.classList.add("editTask");
@@ -72,23 +86,30 @@ window.addEventListener('load', ()=>{
 
       const allDelete = document.createElement("button");
       allDelete.classList.add("deleteAll");
-      allDelete.innerHTML = "Delete All";
+      allDelete.innerHTML = "Delete Task";
 
-      const taskComplete= document.createElement("button");
+      let taskComplete= document.createElement("button");
       taskComplete.classList.add("completed");
-      taskComplete.innerHTML = "Complete";
+      taskComplete.innerHTML = "Toggle Status";
+      taskComplete.style.backgroundColor="lightcoral";
 
 //Buttons being appended when add event is invoked
       taskAction.appendChild(taskEdit);
       taskDate.appendChild(dateEdit);
-      taskDate.appendChild(taskComplete);
-      taskDate.appendChild(allDelete);
+      completeColumn.appendChild(taskComplete);
+      deleteColumn.appendChild(allDelete);/////////////
 
       taskElement.appendChild(taskAction);
       listElement.appendChild(taskElement);
 
       dateElement.appendChild(taskDate);
       listElement2.appendChild(dateElement);
+
+      completeElement.appendChild(completeColumn);
+      listElement3.appendChild(completeElement);
+
+      deleteElement.appendChild(deleteColumn);
+      listElement4.appendChild(deleteElement);
 
       input.value = "";
 
@@ -99,19 +120,28 @@ window.addEventListener('load', ()=>{
         if (taskEdit.innerText.toLowerCase()=="edit task"){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
-          taskEdit.innerText = "Save Task"
+          taskEdit.innerText = "Save Task";
+          
         }else{
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
+          console.log(arrayall);
+          console.log(task);////////////////////////////////////////
         }
         
       });
 
-      allDelete.addEventListener('click', ()=>{
-        listElement.removeChild(taskElement);
-      });
       taskComplete.addEventListener('click', ()=>{
-        taskElement.style.setProperty("text-decoration", "line-through");////////////////////////////
+        if(taskComplete.innerHTML === "Complete"){
+          taskComplete.innerHTML = "Toggle Status";
+          taskComplete.style.backgroundColor="lightcoral";
+          taskInputElement.style.textDecoration = "none";
+        }else if (taskComplete.innerHTML === "Toggle Status"){
+          taskComplete.innerHTML = "Complete";
+          taskComplete.style.backgroundColor="lightgreen";
+          taskInputElement.style.textDecoration = "line-through";
+        };
+        
       });
 
 //Edit date event invoked when clicked on edit date. 
@@ -128,14 +158,19 @@ window.addEventListener('load', ()=>{
       });
 
       allDelete.addEventListener('click', ()=>{
-        listElement2.removeChild(dateElement);
+        if(allDelete.innerHTML === "Undo"){
+          listElement2.appendChild(dateElement);
+          listElement.appendChild(taskElement);
+          listElement3.appendChild(completeElement);
+          allDelete.innerHTML = "Delete Task";
+        }else if (allDelete.innerHTML === "Delete Task"){
+          listElement2.removeChild(dateElement);
+          listElement.removeChild(taskElement);
+          listElement3.removeChild(completeElement);
+          allDelete.innerHTML = "Undo";
+        };
       });
-
-    arrayall.push(task0);
-    arrayall.sort(function (a, b) {
-      return a._date - b._date;
+      arrayall.push(task0);
+      console.log(arrayall);
     });
-    console.log(arrayall);
-      
-    });
-  });
+ // });
