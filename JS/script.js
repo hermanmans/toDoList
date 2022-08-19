@@ -70,20 +70,19 @@ window.addEventListener('load', ()=>{
       dateEdit.classList.add("editDate");
       dateEdit.innerHTML = "Edit Date";
 
-      const taskDelete = document.createElement("button");
-      taskDelete.classList.add("deleteTask");
-      taskDelete.innerHTML = "Delete Task";
+      const allDelete = document.createElement("button");
+      allDelete.classList.add("deleteAll");
+      allDelete.innerHTML = "Delete All";
 
-      const dateDelete = document.createElement("button");
-      dateDelete.classList.add("deleteDate");
-      dateDelete.innerHTML = "Delete Date";
+      const taskComplete= document.createElement("button");
+      taskComplete.classList.add("completed");
+      taskComplete.innerHTML = "Complete";
 
 //Buttons being appended when add event is invoked
       taskAction.appendChild(taskEdit);
-      taskAction.appendChild(taskDelete);
-
       taskDate.appendChild(dateEdit);
-      taskDate.appendChild(dateDelete);
+      taskDate.appendChild(taskComplete);
+      taskDate.appendChild(allDelete);
 
       taskElement.appendChild(taskAction);
       listElement.appendChild(taskElement);
@@ -108,8 +107,11 @@ window.addEventListener('load', ()=>{
         
       });
 
-      taskDelete.addEventListener('click', ()=>{
+      allDelete.addEventListener('click', ()=>{
         listElement.removeChild(taskElement);
+      });
+      taskComplete.addEventListener('click', ()=>{
+        taskElement.style.setProperty("text-decoration", "line-through");////////////////////////////
       });
 
 //Edit date event invoked when clicked on edit date. 
@@ -125,7 +127,7 @@ window.addEventListener('load', ()=>{
         console.log(arrayall);
       });
 
-      dateDelete.addEventListener('click', ()=>{
+      allDelete.addEventListener('click', ()=>{
         listElement2.removeChild(dateElement);
       });
 
