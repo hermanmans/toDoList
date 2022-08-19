@@ -1,7 +1,7 @@
 class Task{
   constructor(task, date){
-  this._task = task;
-  this._date = date;
+  this.task = task;
+  this.date = date;
   }
 }
 window.addEventListener('load', ()=>{
@@ -27,7 +27,7 @@ window.addEventListener('load', ()=>{
       }
 //Creating elements for: tasks and dates and their content   
       const taskElement = document.createElement("div");
-      taskElement.classList.add("task");
+      taskElement.classList.add("tasks");
       const taskContent = document.createElement("div");
       taskContent.classList.add("content");
 

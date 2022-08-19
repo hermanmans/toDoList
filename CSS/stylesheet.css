@@ -23,7 +23,7 @@ header{
 }
 
 
-#tasks .task,.taskList,.date{
+#tasks .tasks,.taskList,.date{
     padding: 5px;
     background-color: beige;
     margin: 2px;
