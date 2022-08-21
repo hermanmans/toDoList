@@ -16,7 +16,7 @@ class Task{
   let arrayall = [];
     form.addEventListener('submit',(e) =>{
       e.preventDefault();
-      const task = input.value;
+      let task = input.value;
       const date = inputDate.value;
       const task0 = new Task(task,date);
       if (!task){
@@ -49,7 +49,7 @@ class Task{
       dateElement.appendChild(dateContent);
 
 //Input window created for tasks and dates
-      const taskInputElement = document.createElement("input");
+      let taskInputElement = document.createElement("input");
       taskInputElement.classList.add("class");
       taskInputElement.type = "text";
       taskInputElement.value = task;
@@ -114,21 +114,24 @@ class Task{
       input.value = "";
 
       inputDate.value = '';
-
+ 
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
         if (taskEdit.innerText.toLowerCase()=="edit task"){
+          console.log(listElement.children.length);
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
           taskEdit.innerText = "Save Task";
-          
         }else{
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
-          console.log(arrayall);
-          console.log(task);////////////////////////////////////////
-        }
-        
+          console.log(taskInputElement.value);
+          for (i=0;i<arrayall.length;i++){
+            console.log(i);
+          };
+  
+            ////////////////////////////////////////
+        };
       });
 
       taskComplete.addEventListener('click', ()=>{
