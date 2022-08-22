@@ -4,6 +4,14 @@ class Task{
   this.date = date;
   }
 }
+
+function test(){
+  let z = document.getElementById("tasks");
+    if(z.innerText === "Save Task");
+      console.log(z.innerText.indexOf("Save Task")/10);
+};
+
+
 //window.addEventListener('load', ()=>{
   const form = document.querySelector("#taskForm");
   const input = document.querySelector("#taskInput");
@@ -117,21 +125,19 @@ class Task{
  
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
+        let n = test();
         if (taskEdit.innerText.toLowerCase()=="edit task"){
-          console.log(listElement.children.length);
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
           taskEdit.innerText = "Save Task";
+          
         }else{
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
-          console.log(taskInputElement.value);
-          for (i=0;i<arrayall.length;i++){
-            console.log(i);
-          };
-  
-            ////////////////////////////////////////
+          arrayall[n]=taskInputElement[n].value;
+             ////////////////////////////////////////
         };
+        
       });
 
       taskComplete.addEventListener('click', ()=>{
