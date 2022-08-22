@@ -25,11 +25,7 @@ function setApi(obj){
 }
 
 function sortApi(){
-  let getString = localStorage.getItem("toDo");
-  let newObj = JSON.parse(getString);
-  newObj.sort((a, b)=>{
-    arrayStr = JSON.stringify(newObj);
-    setApi(arrayStr);
+  arrayall.sort((a, b)=>{
     if(a.date > b.date){
       return 1;
     }else if(a.date < b.date){
@@ -167,9 +163,10 @@ function sortApi(){
           taskEdit.innerText = "Edit Task";
           arrayall[index].task=taskInputElement.value;
           console.log(index);
+          sortApi();
           arrayStr = JSON.stringify(arrayall);
           setApi(arrayStr);
-          sortApi();
+          
         
              ////////////////////////////////////////
         };
