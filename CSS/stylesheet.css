@@ -22,8 +22,7 @@ header{
     text-align: center;
 }
 
-
-#tasks .tasks,.taskList,.date,.complete,.delete{
+.tasks,.taskList,.date,.complete,.delete{
     padding: 5px;
     background-color: beige;
     margin: 2px;

@@ -5,11 +5,41 @@ class Task{
   }
 }
 
-function test(){
-  let z = document.getElementById("tasks");
-    if(z.innerText === "Save Task");
-      console.log(z.innerText.indexOf("Save Task")/10);
+function getIndex(){
+  let taskColumn = document.getElementById("tasks");
+    if(taskColumn.innerText === "Save Task");
+      let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
+      return indexNum;
 };
+
+function getIndex2(){
+  let dateColumn = document.getElementById("date");
+    if(dateColumn.innerText === "Save Date");
+      let indexNum2 = dateColumn.innerText.indexOf("Save Date")/10;
+      console.log(indexNum2);
+      return indexNum2;
+};
+
+function setApi(obj){
+ localStorage.setItem("toDo",obj);
+}
+
+function sortApi(){
+  let getString = localStorage.getItem("toDo");
+  let newObj = JSON.parse(getString);
+  newObj.sort((a, b)=>{
+    arrayStr = JSON.stringify(newObj);
+    setApi(arrayStr);
+    if(a.date > b.date){
+      return 1;
+    }else if(a.date < b.date){
+      return -1
+    }else{
+      return 0;
+    }
+    
+  });
+ }
 
 
 //window.addEventListener('load', ()=>{
@@ -125,7 +155,8 @@ function test(){
  
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
-        let n = test();
+        let index = getIndex();
+        
         if (taskEdit.innerText.toLowerCase()=="edit task"){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
@@ -134,7 +165,12 @@ function test(){
         }else{
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
-          arrayall[n]=taskInputElement[n].value;
+          arrayall[index].task=taskInputElement.value;
+          console.log(index);
+          arrayStr = JSON.stringify(arrayall);
+          setApi(arrayStr);
+          sortApi();
+        
              ////////////////////////////////////////
         };
         
@@ -155,6 +191,7 @@ function test(){
 
 //Edit date event invoked when clicked on edit date. 
       dateEdit.addEventListener('click', ()=>{
+        let index2 = getIndex2();
         if (dateEdit.innerText.toLowerCase()=="edit date"){
           dateInputElement.removeAttribute("readonly");
           dateInputElement.focus();
@@ -162,8 +199,14 @@ function test(){
         }else{
           dateInputElement.setAttribute("readonly", "readonly");
           dateEdit.innerText = "Edit Date";
+          console.log(dateInputElement.value);
+          console.log(arrayall[index2].date);
+          arrayall[index2].date=dateInputElement.value;
+          arrayStr = JSON.stringify(arrayall);
+          setApi(arrayStr);
+          sortApi();
         }
-        console.log(arrayall);
+  
       });
 
       allDelete.addEventListener('click', ()=>{
