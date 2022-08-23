@@ -32,7 +32,9 @@ header{
 #sort{
     margin-left: 55px;
 }
-
+#sortedTask{
+    display: flex;
+}
 label{
     font-size: x-large;
 }

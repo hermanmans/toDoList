@@ -37,6 +37,9 @@ function sortApi(){
   });
  }
 
+ //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked
+  
+ //}
 
 //window.addEventListener('load', ()=>{
   const form = document.querySelector("#taskForm");
@@ -146,9 +149,8 @@ function sortApi(){
       listElement4.appendChild(deleteElement);
 
       input.value = "";
-
       inputDate.value = '';
- 
+    
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
         let index = getIndex();
@@ -199,9 +201,9 @@ function sortApi(){
           console.log(dateInputElement.value);
           console.log(arrayall[index2].date);
           arrayall[index2].date=dateInputElement.value;
+          sortApi();
           arrayStr = JSON.stringify(arrayall);
           setApi(arrayStr);
-          sortApi();
         }
   
       });
@@ -221,5 +223,34 @@ function sortApi(){
       });
       arrayall.push(task0);
       console.log(arrayall);
-    });
+      sortApi();
+      arrayStr = JSON.stringify(arrayall);
+      setApi(arrayStr);
+
+ 
+  });
+  let reloaded = document.querySelector("#sortButton")
+  reloaded.addEventListener('click',() =>{
+    let show = document.getElementById('sortHead');
+
+   if(show.style.display == 'none'){
+        show.style.display = 'block';
+        document.querySelector('#sortButton').innerHTML = "Go Back";
+   }
+   else {
+        show.style.display = 'none';
+        document.querySelector('#sortButton').innerHTML = "Sort List";
+   }
+
+  for(x=0;x<arrayall.length;x++){
+    let text = document.getElementById("sortedTask");
+    let item = document.createElement("div");
+    text.appendChild(item);
+    item.appendChild(document.createTextNode(arrayall[x].task));
+    let text2 = document.getElementById("sortedTask");
+    let item2 = document.createElement("div");
+    text2.appendChild(item2);
+    item2.appendChild(document.createTextNode(arrayall[x].date));
+  };
+});
  // });
