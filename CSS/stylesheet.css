@@ -32,8 +32,18 @@ header{
 #sort{
     margin-left: 55px;
 }
-#sortedTask{
+.sortList{
     display: flex;
+    background-color: lightgray;
+    font-weight: 100;
+    justify-content: center;
+}
+#sortedDate{
+  margin-left: 10%;
+}
+#sortHead{
+    margin-top: 50px;
+    text-align: center;
 }
 label{
     font-size: x-large;

@@ -232,25 +232,32 @@ function sortApi(){
   let reloaded = document.querySelector("#sortButton")
   reloaded.addEventListener('click',() =>{
     let show = document.getElementById('sortHead');
-
+    
    if(show.style.display == 'none'){
         show.style.display = 'block';
         document.querySelector('#sortButton').innerHTML = "Go Back";
-   }
-   else {
+        document.getElementById("sortedTask").style.display = 'block' ;
+        document.getElementById("sortedDate").style.display = 'block';
+        for(x=0;x<arrayall.length;x++){
+          let text = document.getElementById("sortedTask");
+          let item = document.createElement("div");
+          text.appendChild(item);
+          item.appendChild(document.createTextNode(arrayall[x].task));
+          let text2 = document.getElementById("sortedDate");
+          let item2 = document.createElement("div");
+          text2.appendChild(item2);
+          item2.appendChild(document.createTextNode(arrayall[x].date));
+          console.log(item.innerText.length); //trying to say that when there is a duplicate do not run the function
+          console.log(item2.innerText.length);
+        };
+        }else {
         show.style.display = 'none';
         document.querySelector('#sortButton').innerHTML = "Sort List";
-   }
+        document.getElementById("sortedTask").style.display = 'none' ;
+        document.getElementById("sortedDate").style.display = 'none';
+        };
+  return;
 
-  for(x=0;x<arrayall.length;x++){
-    let text = document.getElementById("sortedTask");
-    let item = document.createElement("div");
-    text.appendChild(item);
-    item.appendChild(document.createTextNode(arrayall[x].task));
-    let text2 = document.getElementById("sortedTask");
-    let item2 = document.createElement("div");
-    text2.appendChild(item2);
-    item2.appendChild(document.createTextNode(arrayall[x].date));
-  };
+
 });
  // });
