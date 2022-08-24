@@ -35,8 +35,11 @@ header{
 .sortList{
     display: flex;
     background-color: lightgray;
-    font-weight: 100;
+    font-weight:bold;
+    font-size:15px;
+    border: dotted 2px black;
     justify-content: center;
+    width: auto;
 }
 #sortedDate{
   margin-left: 10%;
