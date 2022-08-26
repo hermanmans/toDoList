@@ -9,6 +9,7 @@ function getIndex(){
   let taskColumn = document.getElementById("tasks");
     if(taskColumn.innerText === "Save Task");
       let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
+      console.log(indexNum);
       return indexNum;
 };
 
@@ -36,36 +37,36 @@ function sortApi(){
     
   });
  }
- function refresh(v){
-  let nodesArray = [].slice.call(v);
-  nodesArray.splice(0,arrayall.length);
-  console.log(nodesArray);
+ function refresh(){
+  document.getElementById("sortedTask").innerHTML="";
+  document.getElementById("sortedDate").innerHTML="";
 }
  function theFunc(){
   if(reloaded.innerHTML == 'Show Sorted List'){
    console.log("show sorted list was clicked");
-       reloaded.innerHTML = 'Go Back';
        show.style.display = "block"
-       document.getElementById("sortedTask").style.display = 'block' ;
-       document.getElementById("sortedDate").style.display = 'block';
      for(x=0;x<arrayall.length;x++){
        let text1 = document.getElementById("sortedTask");
        let item1 = document.createElement("div");
        text1.appendChild(item1);
-       refresh(document.getElementById("sortedTask").childNodes);
        item1.appendChild(document.createTextNode(arrayall[x].task));
        let text2 = document.getElementById("sortedDate");
        let item2 = document.createElement("div");
        text2.appendChild(item2);
        item2.appendChild(document.createTextNode(arrayall[x].date));
-       console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
-       console.log(item2.innerText);
+       //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
+       //console.log(item2.innerText);
+       reloaded.innerHTML = 'Go Back';
+       
+       
        };
- }else {  
- reloaded.innerHTML = 'Show Sorted List';
+ }else {
+ let item1 = document.createElement("div");  
  show.style.display = "none"
  console.log("go back was clicked");
  console.log(arrayall);
+ refresh(document.getElementById("sortedTask").innerHTML="");
+ reloaded.innerHTML = 'Show Sorted List';
  
  };
  
@@ -73,6 +74,7 @@ function sortApi(){
 
   let reloaded = document.querySelector("#sortButton")
   let show = document.getElementById('sortHead');
+
 
  //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked
   
@@ -165,7 +167,7 @@ function sortApi(){
       let taskComplete= document.createElement("button");
       taskComplete.classList.add("completed");
       taskComplete.innerHTML = "Toggle Status";
-      taskComplete.style.backgroundColor="lightcoral";
+      taskComplete.style.backgroundColor="#bf9076";
 
 //Buttons being appended when add event is invoked
       taskAction.appendChild(taskEdit);
@@ -211,11 +213,11 @@ function sortApi(){
       taskComplete.addEventListener('click', ()=>{
         if(taskComplete.innerHTML === "Complete"){
           taskComplete.innerHTML = "Toggle Status";
-          taskComplete.style.backgroundColor="lightcoral";
+          taskComplete.style.backgroundColor="#bf9076";
           taskInputElement.style.textDecoration = "none";
         }else if (taskComplete.innerHTML === "Toggle Status"){
           taskComplete.innerHTML = "Complete";
-          taskComplete.style.backgroundColor="lightgreen";
+          taskComplete.style.backgroundColor="#a2be87";
           taskInputElement.style.textDecoration = "line-through";
         };
         
