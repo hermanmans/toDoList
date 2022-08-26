@@ -1,5 +1,5 @@
 *{box-sizing: border-box;}
-*{font-family: Arial, Helvetica, sans-serif;}
+*{font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
 
 body{
     background-image: url("/Images/pic.jpg");
@@ -14,6 +14,11 @@ body{
     padding: 20px;
     border-radius: 10px;
   }
+
+h1{
+    color: brown;
+    fill: aqua;
+}
   
 header{
     font-weight: bold;
@@ -29,8 +34,13 @@ header{
     word-spacing: normal;
     display: flex;
 }
+@media only screen and (min-width: 600px) {
+    #sort{
+        margin-left:55px;
+    }
+};
 #sort{
-    margin-left: 55px;
+    margin-left: 0px;
 }
 .sortList{
     display: flex;
@@ -59,6 +69,13 @@ label{
     background-color:rgb(244, 243, 186);
     border-radius: 20px;
 }
+@media only screen and (max-width: 600px) {
+    .tasks,.taskList,.date,.complete,.delete,#taskForm{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    };
+}; 
 
-
+    
 
