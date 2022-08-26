@@ -36,7 +36,11 @@ function sortApi(){
     
   });
  }
-
+ function refresh(v){
+  let nodesArray = [].slice.call(v);
+  nodesArray.splice(0,arrayall.length);
+  console.log(nodesArray);
+}
  function theFunc(){
   if(reloaded.innerHTML == 'Show Sorted List'){
    console.log("show sorted list was clicked");
@@ -48,22 +52,25 @@ function sortApi(){
        let text1 = document.getElementById("sortedTask");
        let item1 = document.createElement("div");
        text1.appendChild(item1);
+       refresh(document.getElementById("sortedTask").childNodes);
        item1.appendChild(document.createTextNode(arrayall[x].task));
        let text2 = document.getElementById("sortedDate");
        let item2 = document.createElement("div");
        text2.appendChild(item2);
        item2.appendChild(document.createTextNode(arrayall[x].date));
        console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
-       console.log(item2.innerText.length);
+       console.log(item2.innerText);
        };
  }else {  
  reloaded.innerHTML = 'Show Sorted List';
  show.style.display = "none"
  console.log("go back was clicked");
  console.log(arrayall);
+ 
  };
  
 };
+
   let reloaded = document.querySelector("#sortButton")
   let show = document.getElementById('sortHead');
 
