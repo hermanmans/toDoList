@@ -65,7 +65,7 @@ function sortApi(){
  show.style.display = "none"
  console.log("go back was clicked");
  console.log(arrayall);
- refresh(document.getElementById("sortedTask").innerHTML="");
+ refresh();
  reloaded.innerHTML = 'Show Sorted List';
  
  };
