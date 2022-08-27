@@ -29,6 +29,9 @@ form{
     padding-right: 10px;
     border-radius: 10px;
 }
+#userHelp{
+    width: fit-content;
+}
 button,#submit{
     background-color: #d6cfa5;
     border: 1px solid black;
@@ -81,5 +84,12 @@ label{
     };
 }; 
 
-    
-
+@keyframes userHelp {
+    from {
+      transform: translateX(0%);
+    };
+  
+    to {
+      transform: translateX(100%);
+    };
+  };
