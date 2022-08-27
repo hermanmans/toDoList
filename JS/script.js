@@ -4,7 +4,8 @@ class Task{
   this.date = date;
   }
 }
-
+//Functions
+//Get index of task
 function getIndex(){
   let taskColumn = document.getElementById("tasks");
     if(taskColumn.innerText === "Save Task");
@@ -12,7 +13,7 @@ function getIndex(){
       console.log(indexNum);
       return indexNum;
 };
-
+//Get index of date
 function getIndex2(){
   let dateColumn = document.getElementById("date");
     if(dateColumn.innerText === "Save Date");
@@ -20,13 +21,13 @@ function getIndex2(){
       console.log(indexNum2);
       return indexNum2;
 };
-
+//Store arrayAll object as an API
 function setApi(obj){
  localStorage.setItem("toDo",obj);
 }
-
+//Sort arrayAll Obj
 function sortApi(){
-  arrayall.sort((a, b)=>{
+  arrayAll.sort((a, b)=>{
     if(a.date > b.date){
       return 1;
     }else if(a.date < b.date){
@@ -34,7 +35,6 @@ function sortApi(){
     }else{
       return 0;
     }
-    
   });
  }
  function refresh(){
@@ -43,43 +43,34 @@ function sortApi(){
 }
  function theFunc(){
   if(reloaded.innerHTML == 'Show Sorted List'){
-   console.log("show sorted list was clicked");
-       show.style.display = "block"
-     for(x=0;x<arrayall.length;x++){
+      console.log("show sorted list was clicked");
+      show.style.display = "block"
+     for(x=0;x<arrayAll.length;x++){
        let text1 = document.getElementById("sortedTask");
        let item1 = document.createElement("div");
        text1.appendChild(item1);
-       item1.appendChild(document.createTextNode(arrayall[x].task));
+       item1.appendChild(document.createTextNode(arrayAll[x].task));
        let text2 = document.getElementById("sortedDate");
        let item2 = document.createElement("div");
        text2.appendChild(item2);
-       item2.appendChild(document.createTextNode(arrayall[x].date));
+       item2.appendChild(document.createTextNode(arrayAll[x].date));
        //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
        //console.log(item2.innerText);
        reloaded.innerHTML = 'Go Back';
-       
-       
        };
  }else {
  let item1 = document.createElement("div");  
  show.style.display = "none"
  console.log("go back was clicked");
- console.log(arrayall);
+ console.log(arrayAll);
  refresh();
  reloaded.innerHTML = 'Show Sorted List';
- 
  };
- 
 };
-
   let reloaded = document.querySelector("#sortButton")
   let show = document.getElementById('sortHead');
-
-
- //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked
-  
+ //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked 
  //}
-
 //window.addEventListener('load', ()=>{
   const form = document.querySelector("#taskForm");
   const input = document.querySelector("#taskInput");
@@ -89,7 +80,7 @@ function sortApi(){
   const listElement3 = document.querySelector("#complete");
   const listElement4 = document.querySelector("#delete");
 
-  let arrayall = [];
+  let arrayAll = [];
     form.addEventListener('submit',(e) =>{
       e.preventDefault();
       let task = input.value;
@@ -193,23 +184,20 @@ function sortApi(){
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
         let index = getIndex();
-        
         if (taskEdit.innerText.toLowerCase()=="edit task"){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
           taskEdit.innerText = "Save Task";
-          
         }else{
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
-          arrayall[index].task=taskInputElement.value;
+          arrayAll[index].task=taskInputElement.value;
           console.log(index);
           sortApi();
-          arrayStr = JSON.stringify(arrayall);
+          arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
         };
       });
-
       taskComplete.addEventListener('click', ()=>{
         if(taskComplete.innerHTML === "Complete"){
           taskComplete.innerHTML = "Toggle Status";
@@ -220,9 +208,7 @@ function sortApi(){
           taskComplete.style.backgroundColor="#a2be87";
           taskInputElement.style.textDecoration = "line-through";
         };
-        
       });
-
 //Edit date event invoked when clicked on edit date. 
       dateEdit.addEventListener('click', ()=>{
         let index2 = getIndex2();
@@ -234,15 +220,13 @@ function sortApi(){
           dateInputElement.setAttribute("readonly", "readonly");
           dateEdit.innerText = "Edit Date";
           console.log(dateInputElement.value);
-          console.log(arrayall[index2].date);
-          arrayall[index2].date=dateInputElement.value;
+          console.log(arrayAll[index2].date);
+          arrayAll[index2].date=dateInputElement.value;
           sortApi();
-          arrayStr = JSON.stringify(arrayall);
+          arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
         }
-  
       });
-
       allDelete.addEventListener('click', ()=>{
         if(allDelete.innerHTML === "Undo"){
           listElement2.appendChild(dateElement);
@@ -254,17 +238,16 @@ function sortApi(){
           listElement.removeChild(taskElement);
           listElement3.removeChild(completeElement);
           allDelete.innerHTML = "Undo";
-          arrayall.splice(getIndex(),1);////////////////////////////////////////
+          arrayAll.splice(getIndex(),1);////////////////////////////////////////
           getIndex;///////////////////////////////////////////////
-          console.log(arrayall);
+          console.log(arrayAll);
         };
       });
-      arrayall.push(task0);
-      console.log(arrayall);
+      arrayAll.push(task0);
+      console.log(arrayAll);
       sortApi();
-      arrayStr = JSON.stringify(arrayall);
+      arrayStr = JSON.stringify(arrayAll);
       setApi(arrayStr);
       reloaded.addEventListener('click',theFunc);
   });
-  
  // });
