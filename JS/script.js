@@ -6,20 +6,42 @@ class Task{
 }
 //Functions
 //Get index of task
-function getIndex(){
-  let taskColumn = document.getElementById("tasks");
-    if(taskColumn.innerText === "Save Task");
-      let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
+function getTaskIndex(){
+  let taskColumn = document.querySelector(".class").value;
+  for (n=0;n<arrayAll.length;n++){
+    console.log(arrayAll[n].task);
+    if(taskColumn === arrayAll[n].task);
+      console.log(taskColumn);
+      console.log(arrayAll[n].task);
+      let indexNum = arrayAll.length-1;
       console.log(indexNum);
       return indexNum;
+  };
 };
+
 //Get index of date
-function getIndex2(){
+function getDateIndex(){
   let dateColumn = document.getElementById("date");
     if(dateColumn.innerText === "Save Date");
       let indexNum2 = dateColumn.innerText.indexOf("Save Date")/10;
       console.log(indexNum2);
       return indexNum2;
+};
+//Get index of status
+function getStatusIndex(){
+  let statusColumn = document.getElementById("complete");
+    if(statusColumn.innerText === "Complete");
+      let indexNum3 = statusColumn.innerText.indexOf("Toggle Status")/10;
+      console.log(indexNum3);
+      return indexNum3;
+};
+//Get index of delete
+function getDeleteIndex(){
+  let deleteColumn = document.getElementById("delete");
+    if(deleteColumn.innerText === "Removed");
+      let indexNum4 = deleteColumn.innerText.indexOf("Delete Task")/10;
+      console.log(indexNum4);
+      return indexNum4;
 };
 //Store arrayAll object as an API
 function setApi(obj){
@@ -57,6 +79,9 @@ function sortApi(){
        //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
        //console.log(item2.innerText);
        reloaded.innerHTML = 'Go Back';
+       sortApi();
+       arrayStr = JSON.stringify(arrayAll);
+       setApi(arrayStr);
        };
  }else {
  let item1 = document.createElement("div");  
@@ -183,19 +208,21 @@ function sortApi(){
     
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
-        let index = getIndex();
+        
         if (taskEdit.innerText.toLowerCase()=="edit task"){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
           taskEdit.innerText = "Save Task";
+          console.log(arrayAll);
         }else{
+          let index = getTaskIndex();
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
           arrayAll[index].task=taskInputElement.value;
           console.log(index);
-          sortApi();
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
+          console.log(arrayAll);
         };
       });
       taskComplete.addEventListener('click', ()=>{
@@ -204,6 +231,7 @@ function sortApi(){
           taskComplete.style.backgroundColor="#bf9076";
           taskInputElement.style.textDecoration = "none";
         }else if (taskComplete.innerHTML === "Toggle Status"){
+          let index3 = getStatusIndex();
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
           taskInputElement.style.textDecoration = "line-through";
@@ -211,11 +239,12 @@ function sortApi(){
       });
 //Edit date event invoked when clicked on edit date. 
       dateEdit.addEventListener('click', ()=>{
-        let index2 = getIndex2();
+        let index2 = getDateIndex();
         if (dateEdit.innerText.toLowerCase()=="edit date"){
           dateInputElement.removeAttribute("readonly");
           dateInputElement.focus();
           dateEdit.innerText = "Save Date"
+          console.log(arrayAll);
         }else{
           dateInputElement.setAttribute("readonly", "readonly");
           dateEdit.innerText = "Edit Date";
@@ -225,21 +254,23 @@ function sortApi(){
           sortApi();
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
+          console.log(arrayAll);
         }
       });
       allDelete.addEventListener('click', ()=>{
-        if(allDelete.innerHTML === "Undo"){
+        if(allDelete.innerHTML === ""){
           listElement2.appendChild(dateElement);
           listElement.appendChild(taskElement);
           listElement3.appendChild(completeElement);
-          allDelete.innerHTML = "Delete Task";
+          allDelete.innerHTML = "";
         }else if (allDelete.innerHTML === "Delete Task"){
+          let index4 = getDeleteIndex();
+          arrayAll.splice(index4,1);
           listElement2.removeChild(dateElement);
           listElement.removeChild(taskElement);
           listElement3.removeChild(completeElement);
-          allDelete.innerHTML = "Undo";
-          arrayAll.splice(getIndex(),1);////////////////////////////////////////
-          getIndex;///////////////////////////////////////////////
+          allDelete.innerHTML = "";
+          allDelete.remove();
           console.log(arrayAll);
         };
       });
