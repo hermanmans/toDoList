@@ -7,16 +7,11 @@ class Task{
 //Functions
 //Get index of task
 function getTaskIndex(){
-  let taskColumn = document.querySelector(".class").value;
-  for (n=0;n<arrayAll.length;n++){
-    console.log(arrayAll[n].task);
-    if(taskColumn === arrayAll[n].task);
-      console.log(taskColumn);
-      console.log(arrayAll[n].task);
-      let indexNum = arrayAll.length-1;
+  let taskColumn = document.getElementById("tasks");
+    if(taskColumn.innerText === "Save Task");
+      let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
       console.log(indexNum);
       return indexNum;
-  };
 };
 
 //Get index of date
@@ -84,7 +79,6 @@ function sortApi(){
        setApi(arrayStr);
        };
  }else {
- let item1 = document.createElement("div");  
  show.style.display = "none"
  console.log("go back was clicked");
  console.log(arrayAll);
@@ -251,7 +245,6 @@ function sortApi(){
           console.log(dateInputElement.value);
           console.log(arrayAll[index2].date);
           arrayAll[index2].date=dateInputElement.value;
-          sortApi();
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
           console.log(arrayAll);
@@ -276,7 +269,6 @@ function sortApi(){
       });
       arrayAll.push(task0);
       console.log(arrayAll);
-      sortApi();
       arrayStr = JSON.stringify(arrayAll);
       setApi(arrayStr);
       reloaded.addEventListener('click',theFunc);
