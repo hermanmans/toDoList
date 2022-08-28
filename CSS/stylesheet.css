@@ -26,16 +26,6 @@ form{
     padding-right: 10px;
     border-radius: 10px;
 }
-@keyframes point {
-    20%{transform: translateX(100px);opacity: 0;};
-    100%{transform:translateX(-100px)};
-}
-#userHelp{
-    background-color: red;
-    animation-name: point;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-}
 button,#submit{
     background-color: #d6cfa5;
     border: 1px solid black;
