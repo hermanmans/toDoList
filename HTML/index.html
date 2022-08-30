@@ -26,8 +26,13 @@
               <input id="submit" type="submit" style="font-size:3;"> 
       </form>
     <h2>Planned Tasks</h2>
-    <div id="sort">
+    <ul class="preview" style="display:none ;">
+      <li id="prevTasks"></li>
+      <li id="prevDates"></li>
+    </ul>
+    <div id="sort"></div>
       <button id="sortButton">Show Sorted List</button>
+      <button id="histButton">Show Previous Tasks</button>
     </div>
     <section class="taskList">
       <div id="tasks"></div>

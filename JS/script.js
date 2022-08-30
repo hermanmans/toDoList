@@ -42,9 +42,26 @@ function getDeleteIndex(){
 function setApi(obj){
  localStorage.setItem("toDo",obj);
 }
+function getApi(){
+  let arrayHist =JSON.parse(localStorage.getItem("toDo"));
+  if(history.innerHTML == 'Show Previous Tasks'){
+    for(x=0;x<arrayHist.length;x++){
+      sortApi(arrayHist);
+      document.getElementById("prevTasks").innerHTML = arrayHist[x].task;
+      document.getElementById("prevDates").innerHTML = arrayHist[x].date;
+      history.innerHTML = 'Cancel';
+    };
+    document.querySelector(".preview").style.display = "block";
+  }else {
+    document.getElementById("prevTasks").innerHTML ="";
+    document.getElementById("prevDates").innerHTML ="";
+    history.innerHTML = 'Show Previous Tasks';
+    document.querySelector(".preview").style.display = "none";
+ };
+};
 //Sort arrayAll Obj
-function sortApi(){
-  arrayAll.sort((a, b)=>{
+function sortApi(arg){
+  arg.sort((a, b)=>{
     if(a.date > b.date){
       return 1;
     }else if(a.date < b.date){
@@ -63,6 +80,7 @@ function sortApi(){
       console.log("show sorted list was clicked");
       show.style.display = "block"
      for(x=0;x<arrayAll.length;x++){
+       sortApi(arrayAll);
        let text1 = document.getElementById("sortedTask");
        let item1 = document.createElement("div");
        text1.appendChild(item1);
@@ -74,7 +92,6 @@ function sortApi(){
        //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
        //console.log(item2.innerText);
        reloaded.innerHTML = 'Go Back';
-       sortApi();
        arrayStr = JSON.stringify(arrayAll);
        setApi(arrayStr);
        };
@@ -86,8 +103,9 @@ function sortApi(){
  reloaded.innerHTML = 'Show Sorted List';
  };
 };
-  let reloaded = document.querySelector("#sortButton")
+  let reloaded = document.querySelector("#sortButton");
   let show = document.getElementById('sortHead');
+  let history = document.querySelector("#histButton");
  //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked 
  //}
 //window.addEventListener('load', ()=>{
@@ -98,7 +116,7 @@ function sortApi(){
   const listElement2 = document.querySelector("#date");
   const listElement3 = document.querySelector("#complete");
   const listElement4 = document.querySelector("#delete");
-
+  history.addEventListener('click',getApi);
   let arrayAll = [];
     form.addEventListener('submit',(e) =>{
       e.preventDefault();

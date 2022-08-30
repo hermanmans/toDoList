@@ -31,6 +31,10 @@ button,#submit{
     border: 1px solid black;
     border-radius: 3px;
 }
+.preview{
+    display: flex;
+    column-gap: 10%;
+}
 .tasks,.taskList,.date,.complete,.delete{
     padding: 5px;
     margin: 2px;
