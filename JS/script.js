@@ -24,11 +24,10 @@ function getDateIndex(){
 };
 //Get index of status
 function getStatusIndex(){
-  let statusColumn = document.getElementById("complete");
+  let statusColumn = document.querySelector(".completed");
     if(statusColumn.innerText === "Complete");
       let indexNum3 = statusColumn.innerText.indexOf("Toggle Status")/10;
       console.log(indexNum3);
-      return indexNum3;
 };
 //Get index of delete
 function getDeleteIndex(){
@@ -44,14 +43,21 @@ function setApi(obj){
 }
 function getApi(){
   let arrayHist =JSON.parse(localStorage.getItem("toDo"));
-  if(history.innerHTML == 'Show Previous Tasks'){
+  console.log(arrayHist);
+  if(arrayHist && history.innerHTML == 'Show Previous Tasks'){
     for(x=0;x<arrayHist.length;x++){
       sortApi(arrayHist);
-      document.getElementById("prevTasks").innerHTML = arrayHist[x].task;
-      document.getElementById("prevDates").innerHTML = arrayHist[x].date;
+      let text3 = document.getElementById("prevTasks");
+      let item3 = document.createElement("div");
+      text3.appendChild(item3);
+      item3.appendChild(document.createTextNode(arrayHist[x].task));
+      let text4 = document.getElementById("prevDates");
+      let item4 = document.createElement("div");
+      text4.appendChild(item4);
+      item4.appendChild(document.createTextNode(arrayHist[x].date));
       history.innerHTML = 'Cancel';
     };
-    document.querySelector(".preview").style.display = "block";
+    document.querySelector(".preview").style.display = "flex";
   }else {
     document.getElementById("prevTasks").innerHTML ="";
     document.getElementById("prevDates").innerHTML ="";
@@ -78,7 +84,9 @@ function sortApi(arg){
  function theFunc(){
   if(reloaded.innerHTML == 'Show Sorted List'){
       console.log("show sorted list was clicked");
-      show.style.display = "block"
+      show.style.display = "block";
+      listElement3.style.display = "block";
+      listElement4.style.display = "block";
      for(x=0;x<arrayAll.length;x++){
        sortApi(arrayAll);
        let text1 = document.getElementById("sortedTask");
@@ -241,12 +249,12 @@ function sortApi(arg){
         if(taskComplete.innerHTML === "Complete"){
           taskComplete.innerHTML = "Toggle Status";
           taskComplete.style.backgroundColor="#bf9076";
-          taskInputElement.style.textDecoration = "none";
+          document.getElementById("sortedTask").style.textDecoration = "none";
         }else if (taskComplete.innerHTML === "Toggle Status"){
           let index3 = getStatusIndex();
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
-          taskInputElement.style.textDecoration = "line-through";
+          //document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
         };
       });
 //Edit date event invoked when clicked on edit date. 
@@ -274,6 +282,7 @@ function sortApi(arg){
           listElement.appendChild(taskElement);
           listElement3.appendChild(completeElement);
           allDelete.innerHTML = "";
+          listElement4.style.padding = 0;
         }else if (allDelete.innerHTML === "Delete Task"){
           let index4 = getDeleteIndex();
           arrayAll.splice(index4,1);
@@ -281,6 +290,7 @@ function sortApi(arg){
           listElement.removeChild(taskElement);
           listElement3.removeChild(completeElement);
           allDelete.innerHTML = "";
+          listElement4.style.padding = 0;
           allDelete.remove();
           console.log(arrayAll);
         };

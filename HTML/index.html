@@ -27,8 +27,8 @@
       </form>
     <h2>Planned Tasks</h2>
     <ul class="preview" style="display:none ;">
-      <li id="prevTasks"></li>
-      <li id="prevDates"></li>
+      <div id="prevTasks"></div>
+      <div id="prevDates"></div>
     </ul>
     <div id="sort"></div>
       <button id="sortButton">Show Sorted List</button>
@@ -37,13 +37,14 @@
     <section class="taskList">
       <div id="tasks"></div>
       <div id="date"></div>
-      <div id="complete"></div>
-      <div id="delete"></div>
+      
     </section>
     <h2 id="sortHead" style="display:none;">Sorted Tasks</h2>
     <section class="sortList">
       <div id="sortedTask"></div>
       <div id="sortedDate"></div>
+      <div id="complete" style="display:none ;"></div>
+      <div id="delete" style="display:none ;"></div>
     </section>
   </div>
 </body>

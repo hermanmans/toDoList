@@ -32,15 +32,27 @@ button,#submit{
     border-radius: 3px;
 }
 .preview{
-    display: flex;
     column-gap: 10%;
 }
-.tasks,.taskList,.date,.complete,.delete{
+#prevTasks{
+    display: flex;
+    flex-direction: column;
+}
+#histButton{
+    margin-left: 50px;
+}
+.tasks,.taskList,.date{
     padding: 5px;
     margin: 2px;
     border-radius: 10px;
     word-spacing: normal;
     display: flex;
+}
+.complete,.delete{
+    border-radius: 10px;
+    word-spacing: normal;
+    display: flex;
+    margin-left: 10px;
 }
 #sort{
     margin-left: 10px;
