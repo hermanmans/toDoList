@@ -10,7 +10,6 @@ function getTaskIndex(){
   let taskColumn = document.getElementById("tasks");
     if(taskColumn.innerText === "Save Task");
       let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
-      console.log(indexNum);
       return indexNum;
 };
 
@@ -24,17 +23,18 @@ function getDateIndex(){
 };
 //Get index of status
 function getStatusIndex(){
-  let statusColumn = document.querySelector(".completed");
-    if(statusColumn.innerText === "Complete");
-      let indexNum3 = statusColumn.innerText.indexOf("Toggle Status")/10;
-      console.log(indexNum3);
+  let statusColumn = document.getElementById("complete");
+    if(statusColumn.innerText === "Toggle Status"){
+      console.log("yes");
+      let indexNum3 = statusColumn.innerText.indexOf("Toggle Status")/9;
+      return indexNum3;
+    };
 };
 //Get index of delete
 function getDeleteIndex(){
   let deleteColumn = document.getElementById("delete");
     if(deleteColumn.innerText === "Removed");
-      let indexNum4 = deleteColumn.innerText.indexOf("Delete Task")/10;
-      console.log(indexNum4);
+      let indexNum4 = deleteColumn.innerText.indexOf("Removed")/12;
       return indexNum4;
 };
 //Store arrayAll object as an API
@@ -82,6 +82,7 @@ function sortApi(arg){
   document.getElementById("sortedDate").innerHTML="";
 }
  function theFunc(){
+  reloaded.style.backgroundColor = "#d6cfa5";
   if(reloaded.innerHTML == 'Show Sorted List'){
       console.log("show sorted list was clicked");
       show.style.display = "block";
@@ -105,6 +106,8 @@ function sortApi(arg){
        };
  }else {
  show.style.display = "none"
+ listElement3.style.display = "none";
+ listElement4.style.display = "none";
  console.log("go back was clicked");
  console.log(arrayAll);
  refresh();
@@ -247,14 +250,17 @@ function sortApi(arg){
       });
       taskComplete.addEventListener('click', ()=>{
         if(taskComplete.innerHTML === "Complete"){
+          document.getElementById("sortedTask").style.textDecoration = "none";
           taskComplete.innerHTML = "Toggle Status";
           taskComplete.style.backgroundColor="#bf9076";
-          document.getElementById("sortedTask").style.textDecoration = "none";
+          console.log("Complete Clicked");
+          console.log(document.getElementById("sortedTask").style.textDecoration);
         }else if (taskComplete.innerHTML === "Toggle Status"){
           let index3 = getStatusIndex();
+          document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
-          //document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
+          reloaded.style.backgroundColor = "yellow";
         };
       });
 //Edit date event invoked when clicked on edit date. 
@@ -277,22 +283,27 @@ function sortApi(arg){
         }
       });
       allDelete.addEventListener('click', ()=>{
-        if(allDelete.innerHTML === ""){
+        if(allDelete.innerHTML === "Removed"){
           listElement2.appendChild(dateElement);
           listElement.appendChild(taskElement);
           listElement3.appendChild(completeElement);
-          allDelete.innerHTML = "";
+          //allDelete.innerHTML = "";
           listElement4.style.padding = 0;
-        }else if (allDelete.innerHTML === "Delete Task"){
           let index4 = getDeleteIndex();
+          console.log(index4);
           arrayAll.splice(index4,1);
+        }else if (allDelete.innerHTML === "Delete Task"){
+          
           listElement2.removeChild(dateElement);
           listElement.removeChild(taskElement);
           listElement3.removeChild(completeElement);
-          allDelete.innerHTML = "";
+          allDelete.innerHTML = "Removed";
           listElement4.style.padding = 0;
-          allDelete.remove();
+          //allDelete.remove();
           console.log(arrayAll);
+          reloaded.style.backgroundColor = "yellow";
+          arrayStr = JSON.stringify(arrayAll);
+          setApi(arrayStr);
         };
       });
       arrayAll.push(task0);
