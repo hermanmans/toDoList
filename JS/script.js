@@ -256,8 +256,8 @@ function sortApi(arg){
           console.log("Complete Clicked");
           console.log(document.getElementById("sortedTask").style.textDecoration);
         }else if (taskComplete.innerHTML === "Toggle Status"){
-          let index3 = getStatusIndex();
-          document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
+          //let index3 = getStatusIndex();
+          //document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
           reloaded.style.backgroundColor = "yellow";
