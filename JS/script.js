@@ -284,22 +284,17 @@ function sortApi(arg){
       });
       allDelete.addEventListener('click', ()=>{
         if(allDelete.innerHTML === "Removed"){
-          listElement2.appendChild(dateElement);
-          listElement.appendChild(taskElement);
-          listElement3.appendChild(completeElement);
-          //allDelete.innerHTML = "";
           listElement4.style.padding = 0;
           let index4 = getDeleteIndex();
           console.log(index4);
           arrayAll.splice(index4,1);
+          listElement4.removeChild(document.getElementById("delete").children[index4]);
+          listElement3.removeChild(document.getElementById("complete").children[index4]);
+          listElement2.remove(document.getElementById("sortedDate").children[index4]);
+          listElement.remove(document.getElementById("sortedTask").children[index4]);
         }else if (allDelete.innerHTML === "Delete Task"){
-          
-          listElement2.removeChild(dateElement);
-          listElement.removeChild(taskElement);
-          listElement3.removeChild(completeElement);
           allDelete.innerHTML = "Removed";
           listElement4.style.padding = 0;
-          //allDelete.remove();
           console.log(arrayAll);
           reloaded.style.backgroundColor = "yellow";
           arrayStr = JSON.stringify(arrayAll);
