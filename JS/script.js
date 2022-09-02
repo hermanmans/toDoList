@@ -33,8 +33,8 @@ function getStatusIndex(){
 //Get index of delete
 function getDeleteIndex(){
   let deleteColumn = document.getElementById("delete");
-    if(deleteColumn.innerText === "Removed");
-      let indexNum4 = deleteColumn.innerText.indexOf("Removed")/12;
+    if(deleteColumn.innerText === "Delete");
+      let indexNum4 = deleteColumn.innerText.indexOf("Delete")/5;
       return indexNum4;
 };
 //Store arrayAll object as an API
@@ -83,7 +83,7 @@ function sortApi(arg){
 }
  function theFunc(){
   reloaded.style.backgroundColor = "#d6cfa5";
-  if(reloaded.innerHTML == 'Show Sorted List'){
+  if(reloaded.innerHTML == 'Show To Do List'){
       console.log("show sorted list was clicked");
       show.style.display = "block";
       listElement3.style.display = "block";
@@ -100,7 +100,7 @@ function sortApi(arg){
        item2.appendChild(document.createTextNode(arrayAll[x].date));
        //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
        //console.log(item2.innerText);
-       reloaded.innerHTML = 'Go Back';
+       reloaded.innerHTML = 'Refresh';
        arrayStr = JSON.stringify(arrayAll);
        setApi(arrayStr);
        };
@@ -111,7 +111,7 @@ function sortApi(arg){
  console.log("go back was clicked");
  console.log(arrayAll);
  refresh();
- reloaded.innerHTML = 'Show Sorted List';
+ reloaded.innerHTML = 'Show To Do List';
  };
 };
   let reloaded = document.querySelector("#sortButton");
@@ -201,7 +201,7 @@ function sortApi(arg){
 
       const allDelete = document.createElement("button");
       allDelete.classList.add("deleteAll");
-      allDelete.innerHTML = "Delete Task";
+      allDelete.innerHTML = "Edit";
 
       let taskComplete= document.createElement("button");
       taskComplete.classList.add("completed");
@@ -260,7 +260,6 @@ function sortApi(arg){
           //document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
-          reloaded.style.backgroundColor = "yellow";
         };
       });
 //Edit date event invoked when clicked on edit date. 
@@ -283,7 +282,7 @@ function sortApi(arg){
         }
       });
       allDelete.addEventListener('click', ()=>{
-        if(allDelete.innerHTML === "Removed"){
+        if(allDelete.innerHTML === "Delete"){
           listElement4.style.padding = 0;
           let index4 = getDeleteIndex();
           console.log(index4);
@@ -292,11 +291,11 @@ function sortApi(arg){
           listElement3.removeChild(document.getElementById("complete").children[index4]);
           listElement2.remove(document.getElementById("sortedDate").children[index4]);
           listElement.remove(document.getElementById("sortedTask").children[index4]);
-        }else if (allDelete.innerHTML === "Delete Task"){
-          allDelete.innerHTML = "Removed";
+          reloaded.style.backgroundColor = "yellow";
+        }else if (allDelete.innerHTML === "Edit"){
+          allDelete.innerHTML = "Delete";
           listElement4.style.padding = 0;
           console.log(arrayAll);
-          reloaded.style.backgroundColor = "yellow";
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
         };
