@@ -9,41 +9,38 @@ class Task{
 function getTaskIndex(){
   let taskColumn = document.getElementById("tasks");
     if(taskColumn.innerText === "Save Task");
-      let indexNum = taskColumn.innerText.indexOf("Save Task")/10;
-      return indexNum;
+      let indexTask = taskColumn.innerText.indexOf("Save Task")/10;
+      return indexTask;
 };
-
 //Get index of date
 function getDateIndex(){
   let dateColumn = document.getElementById("date");
     if(dateColumn.innerText === "Save Date");
-      let indexNum2 = dateColumn.innerText.indexOf("Save Date")/10;
-      console.log(indexNum2);
-      return indexNum2;
+      let indexDate = dateColumn.innerText.indexOf("Save Date")/10;
+      return indexDate;
 };
 //Get index of status
 function getStatusIndex(){
   let statusColumn = document.getElementById("complete");
     if(statusColumn.innerText === "Toggle Status"){
-      console.log("yes");
-      let indexNum3 = statusColumn.innerText.indexOf("Toggle Status")/9;
-      return indexNum3;
+      let indexStatus = statusColumn.innerText.indexOf("Toggle Status")/9;
+      return indexStatus;
     };
 };
 //Get index of delete
 function getDeleteIndex(){
   let deleteColumn = document.getElementById("delete");
     if(deleteColumn.innerText === "Delete");
-      let indexNum4 = deleteColumn.innerText.indexOf("Delete")/5;
-      return indexNum4;
+      let indexDelete = deleteColumn.innerText.indexOf("Delete")/5;
+      return indexDelete;
 };
 //Store arrayAll object as an API
 function setApi(obj){
  localStorage.setItem("toDo",obj);
 }
+//Preview previous sessions admitted tasks
 function getApi(){
   let arrayHist =JSON.parse(localStorage.getItem("toDo"));
-  console.log(arrayHist);
   if(arrayHist && history.innerHTML == 'Show Previous Tasks'){
     for(x=0;x<arrayHist.length;x++){
       sortApi(arrayHist);
@@ -81,13 +78,12 @@ function sortApi(arg){
   document.getElementById("sortedTask").innerHTML="";
   document.getElementById("sortedDate").innerHTML="";
 }
- function theFunc(){
-  reloaded.style.backgroundColor = "#d6cfa5";
-  if(reloaded.innerHTML == 'Show To Do List'){
-      console.log("show sorted list was clicked");
-      show.style.display = "block";
-      listElement3.style.display = "block";
-      listElement4.style.display = "block";
+ function presentList(){
+  sortButton.style.backgroundColor = "#d6cfa5";
+  if(sortButton.innerHTML == 'Show To Do List'){
+      sortHeading.style.display = "block";
+      statusDiv.style.display = "block";
+      deleteDiv.style.display = "block";
      for(x=0;x<arrayAll.length;x++){
        sortApi(arrayAll);
        let text1 = document.getElementById("sortedTask");
@@ -98,35 +94,30 @@ function sortApi(arg){
        let item2 = document.createElement("div");
        text2.appendChild(item2);
        item2.appendChild(document.createTextNode(arrayAll[x].date));
-       //console.log(item1.innerText.length); //trying to say that when there is a duplicate do not run the function
-       //console.log(item2.innerText);
-       reloaded.innerHTML = 'Refresh';
+       sortButton.innerHTML = 'Refresh';
        arrayStr = JSON.stringify(arrayAll);
        setApi(arrayStr);
        };
  }else {
- show.style.display = "none"
- listElement3.style.display = "none";
- listElement4.style.display = "none";
- console.log("go back was clicked");
- console.log(arrayAll);
+ sortHeading.style.display = "none"
+ statusDiv.style.display = "none";
+ deleteDiv.style.display = "none";
  refresh();
- reloaded.innerHTML = 'Show To Do List';
+ sortButton.innerHTML = 'Show To Do List';
  };
 };
-  let reloaded = document.querySelector("#sortButton");
-  let show = document.getElementById('sortHead');
+//Define variables for element selection
+  let sortButton = document.querySelector("#sortButton");
+  let sortHeading = document.getElementById('sortHead');
   let history = document.querySelector("#histButton");
- //for(x=0;x<arrayall.length;x++){ ///add event listener when sort is clicked 
- //}
-//window.addEventListener('load', ()=>{
   const form = document.querySelector("#taskForm");
   const input = document.querySelector("#taskInput");
   const inputDate = document.querySelector("#dateInput");
-  const listElement = document.querySelector("#tasks");
-  const listElement2 = document.querySelector("#date");
-  const listElement3 = document.querySelector("#complete");
-  const listElement4 = document.querySelector("#delete");
+  const taskDiv = document.querySelector("#tasks");
+  const dateDiv = document.querySelector("#date");
+  const statusDiv = document.querySelector("#complete");
+  const deleteDiv = document.querySelector("#delete");
+//User input function that stores values, creates a new class, pushed to an arrayAll.  
   history.addEventListener('click',getApi);
   let arrayAll = [];
     form.addEventListener('submit',(e) =>{
@@ -215,16 +206,16 @@ function sortApi(arg){
       deleteColumn.appendChild(allDelete);/////////////
 
       taskElement.appendChild(taskAction);
-      listElement.appendChild(taskElement);
+      taskDiv.appendChild(taskElement);
 
       dateElement.appendChild(taskDate);
-      listElement2.appendChild(dateElement);
+      dateDiv.appendChild(dateElement);
 
       completeElement.appendChild(completeColumn);
-      listElement3.appendChild(completeElement);
+      statusDiv.appendChild(completeElement);
 
       deleteElement.appendChild(deleteColumn);
-      listElement4.appendChild(deleteElement);
+      deleteDiv.appendChild(deleteElement);
 
       input.value = "";
       inputDate.value = '';
@@ -236,16 +227,13 @@ function sortApi(arg){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
           taskEdit.innerText = "Save Task";
-          console.log(arrayAll);
         }else{
-          let index = getTaskIndex();
+          let taskIndex = getTaskIndex();
           taskInputElement.setAttribute("readonly", "readonly");
           taskEdit.innerText = "Edit Task";
-          arrayAll[index].task=taskInputElement.value;
-          console.log(index);
+          arrayAll[taskIndex].task=taskInputElement.value;
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
-          console.log(arrayAll);
         };
       });
       taskComplete.addEventListener('click', ()=>{
@@ -253,57 +241,46 @@ function sortApi(arg){
           document.getElementById("sortedTask").style.textDecoration = "none";
           taskComplete.innerHTML = "Toggle Status";
           taskComplete.style.backgroundColor="#bf9076";
-          console.log("Complete Clicked");
-          console.log(document.getElementById("sortedTask").style.textDecoration);
         }else if (taskComplete.innerHTML === "Toggle Status"){
-          //let index3 = getStatusIndex();
-          //document.getElementById("sortedTask").childNodes[index3].style.textDecoration = "line-through";
           taskComplete.innerHTML = "Complete";
           taskComplete.style.backgroundColor="#a2be87";
         };
       });
 //Edit date event invoked when clicked on edit date. 
       dateEdit.addEventListener('click', ()=>{
-        let index2 = getDateIndex();
+        let dateIndex = getDateIndex();
         if (dateEdit.innerText.toLowerCase()=="edit date"){
           dateInputElement.removeAttribute("readonly");
           dateInputElement.focus();
           dateEdit.innerText = "Save Date"
-          console.log(arrayAll);
         }else{
           dateInputElement.setAttribute("readonly", "readonly");
           dateEdit.innerText = "Edit Date";
-          console.log(dateInputElement.value);
-          console.log(arrayAll[index2].date);
-          arrayAll[index2].date=dateInputElement.value;
+          arrayAll[dateIndex].date=dateInputElement.value;
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
-          console.log(arrayAll);
         }
       });
       allDelete.addEventListener('click', ()=>{
         if(allDelete.innerHTML === "Delete"){
-          listElement4.style.padding = 0;
-          let index4 = getDeleteIndex();
-          console.log(index4);
-          arrayAll.splice(index4,1);
-          listElement4.removeChild(document.getElementById("delete").children[index4]);
-          listElement3.removeChild(document.getElementById("complete").children[index4]);
-          listElement2.remove(document.getElementById("sortedDate").children[index4]);
-          listElement.remove(document.getElementById("sortedTask").children[index4]);
-          reloaded.style.backgroundColor = "yellow";
+          deleteDiv.style.padding = 0;
+          let deleteIndex = getDeleteIndex();
+          arrayAll.splice(deleteIndex,1);
+          deleteDiv.removeChild(document.getElementById("delete").children[deleteIndex]);
+          statusDiv.removeChild(document.getElementById("complete").children[deleteIndex]);
+          dateDiv.remove(document.getElementById("sortedDate").children[deleteIndex]);
+          taskDiv.remove(document.getElementById("sortedTask").children[deleteIndex]);
+          sortButton.style.backgroundColor = "yellow";
         }else if (allDelete.innerHTML === "Edit"){
           allDelete.innerHTML = "Delete";
-          listElement4.style.padding = 0;
-          console.log(arrayAll);
+          deleteDiv.style.padding = 0;
           arrayStr = JSON.stringify(arrayAll);
           setApi(arrayStr);
         };
       });
       arrayAll.push(task0);
-      console.log(arrayAll);
       arrayStr = JSON.stringify(arrayAll);
       setApi(arrayStr);
-      reloaded.addEventListener('click',theFunc);
+      sortButton.addEventListener('click',presentList);
   });
- // });
+
