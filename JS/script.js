@@ -52,7 +52,7 @@ function getApi(){
       let item4 = document.createElement("div");
       text4.appendChild(item4);
       item4.appendChild(document.createTextNode(arrayHist[x].date));
-      history.innerHTML = 'Cancel';
+      history.innerHTML = 'Hide Previous Tasks';
     };
     document.querySelector(".preview").style.display = "flex";
   }else {
@@ -80,10 +80,11 @@ function sortApi(arg){
 }
  function presentList(){
   sortButton.style.backgroundColor = "#d6cfa5";
-  if(sortButton.innerHTML == 'Show To Do List'){
+  if(sortButton.innerHTML == 'Print To Do List'){
       sortHeading.style.display = "block";
       statusDiv.style.display = "block";
       deleteDiv.style.display = "block";
+      document.querySelector(".taskList").style.display = "none";
      for(x=0;x<arrayAll.length;x++){
        sortApi(arrayAll);
        let text1 = document.getElementById("sortedTask");
@@ -94,7 +95,7 @@ function sortApi(arg){
        let item2 = document.createElement("div");
        text2.appendChild(item2);
        item2.appendChild(document.createTextNode(arrayAll[x].date));
-       sortButton.innerHTML = 'Refresh';
+       sortButton.innerHTML = 'Go Back/Refresh';
        arrayStr = JSON.stringify(arrayAll);
        setApi(arrayStr);
        };
@@ -103,7 +104,7 @@ function sortApi(arg){
  statusDiv.style.display = "none";
  deleteDiv.style.display = "none";
  refresh();
- sortButton.innerHTML = 'Show To Do List';
+ sortButton.innerHTML = 'Print To Do List';
  };
 };
 //Define variables for element selection
@@ -222,7 +223,6 @@ function sortApi(arg){
     
 //Edit task event invoked when clicked on edit task.
       taskEdit.addEventListener('click', ()=>{
-        
         if (taskEdit.innerText.toLowerCase()=="edit task"){
           taskInputElement.removeAttribute("readonly");
           taskInputElement.focus();
@@ -283,4 +283,4 @@ function sortApi(arg){
       setApi(arrayStr);
       sortButton.addEventListener('click',presentList);
   });
-
+  window.addEventListener('load',getApi());
